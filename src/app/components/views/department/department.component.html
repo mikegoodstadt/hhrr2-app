@@ -1,0 +1,11 @@
+<ng-container *ngIf="(department | async) as dept; else loading">
+  <h2>Department: {{ dept.name }}</h2>
+  <app-table
+    [records]="employees"
+    [displayedColumns]="displayedColumns"
+    [serviceName]="serviceName"
+    (edit)="edit($event)"
+    (delete)="delete($event)"
+    ></app-table>
+</ng-container>
+<ng-template #loading>Loading...</ng-template>

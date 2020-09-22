@@ -1,0 +1,30 @@
+@import 'theme.scss';
+
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $headerBgColor;
+  color: $headerTextColor;
+  padding-left: 0.6em;
+}
+
+#left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+
+h1 {
+  line-height: 1em;
+}
+h1 a {
+  display: inline-block;
+}
+#logo {
+  font-size: 1em;
+  margin: 0;
+}
+::ng-deep  .header mat-icon {
+  font-size: 20px;
+}

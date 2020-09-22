@@ -1,0 +1,12 @@
+@import 'theme.scss';
+
+:host {
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+	background: $footerBgColor;
+	color: $footerTextColor;
+  font-size: $footerFontSize;
+  height: 22px;
+  padding: 0 $paddingHoriz;
+}

@@ -1,0 +1,37 @@
+@import 'theme.scss';
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Menu */
+:host-context(.header) li,
+:host-context(.footer) li {
+  float: left;
+  margin-right: 10px;
+}
+:host-context(.header) mat-icon {
+  vertical-align: middle;
+}
+
+/* Sidebar Menu */
+:host-context(.sidebar) ul {
+//    color: #444;
+}
+:host-context(.sidebar) li {
+  margin-bottom: 10px;
+}
+
+  a {
+      color: $headerTextColor;
+      text-decoration: none;
+  }
+  a:hover {
+      color: $headerHoverTextColor;
+      text-decoration: none;
+  }
+  .active-link {
+      color: $headerHoverTextColor;
+  }

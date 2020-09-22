@@ -1,0 +1,45 @@
+<table mat-table [dataSource]="dataSource">
+  
+  <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns | async">
+    <th mat-header-cell *matHeaderCellDef>
+      <ng-container *ngIf="column != 'id' && column != 'startDate' && column != 'actions'">{{ column | camelspaced | titlecase }}</ng-container>
+      <ng-container *ngIf="column == 'id'">ID Number</ng-container>
+      <ng-container *ngIf="column == 'startDate'">
+        {{ column | camelspaced | titlecase }}
+        <button *ngIf="column == 'startDate'" mat-icon-button [color]="filterColor" (click)="toggleFilter()" class="toggle">
+          <mat-icon aria-label="Filter icon">filter_alt</mat-icon>
+        </button><br/>
+        <mat-form-field *ngIf="filterToggle">
+          <input matInput [(ngModel)]="filterDate" (change)="filter($event)" #input type="date">
+        </mat-form-field>
+        <button  *ngIf="filterToggle" mat-icon-button color="secondary" (click)="clearFilter($event)">
+          <mat-icon aria-label="Filter icon">clear</mat-icon>
+        </button>  
+      </ng-container>
+      <ng-container *ngIf="column == 'actions'" fxFlex="40px">
+        <button mat-button color="primary" (click)="edit()">
+          Add {{serviceName}}
+          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+        </button>
+      </ng-container>
+    </th>
+
+    <td mat-cell *matCellDef="let row; let i=index;">
+      <ng-container *ngIf="column != 'id' && column != 'startDate' && column != 'actions'">{{ row[column] }}</ng-container>
+      <ng-container *ngIf="column == 'id'">{{ row[column] | bigintString }}</ng-container>
+      <ng-container *ngIf="column == 'startDate'">{{ row[column] | date:'dd/MM/yy' }}</ng-container>
+      <button *ngIf="column == 'actions'" mat-icon-button color="primary" (click)="view(row)">
+        <mat-icon aria-label="View">pageview</mat-icon>
+      </button>
+      <button *ngIf="column == 'actions'" mat-icon-button color="primary" (click)="edit(row)">
+        <mat-icon aria-label="Edit">edit</mat-icon>
+      </button>
+      <button *ngIf="column == 'actions'" mat-icon-button color="primary" (click)="delete(row)">
+        <mat-icon aria-label="Delete">delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns | async"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns | async"></tr>
+</table>

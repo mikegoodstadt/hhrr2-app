@@ -1,0 +1,88 @@
+@import 'greyscale';
+@import 'palette';
+
+$fontFamily:  "Roboto", "Open Sans", "Helvetica Neue", "Trebuchet MS", Arial, Helvetica, sans-serif;
+$fontSize: 1em;
+$fontWeight: 100;
+$defaultBackground: $color-greyscale-1;
+$textColorDark: $color-greyscale-4;
+$textColorLight: $color-greyscale-1;
+$hoverColorLight: $color-greyscale-2;
+$borderWidth: 2px;
+$borderRadius: 6px;
+$disabledOpacity: 0.35;
+$overlayOpacity: 0.7;
+$paddingTop: 0.8em;
+$paddingHoriz: 2.4em;
+$padding: $paddingTop $paddingHoriz;
+$dialogWidth: 50%;
+
+// Header
+$headerBgColor: $color-primary-0;
+$headerBorderWidth: $borderWidth;
+$headerBorderColor: $color-primary-3;
+$headerTextColor: $color-primary-1;
+$headerIconTextColor: $color-primary-1;
+$headerHoverTextColor: $textColorLight;
+$headerFontWeight: normal;
+
+// Footer
+$footerFontSize: $fontSize * 0,7;
+$footerBgColor: $color-primary-0;
+$footerBorderWidth: $borderWidth;
+$footerBorderColor: $color-primary-3;
+$footerTextColor: $color-primary-1;
+$footerIconTextColor: $color-primary-1;
+$footerHoverTextColor: $textColorLight;
+$footerFontWeight: normal;
+
+// Content
+$contentBgColor: $defaultBackground;
+$contentBorderWidth: $borderWidth;
+$contentBorderColor: $color-primary-3;
+$contentTextColor: $textColorDark;
+$contentIconTextColor: $color-secondary-1-0;
+
+// Clickable: Default State
+$stateDefaultBgColor: $defaultBackground;
+$stateDefaultBorderWidth: $borderWidth;
+$stateDefaultBorderColor: $color-primary-1;
+$stateDefaultTextColor: $color-primary-0;
+$stateDefaultIconTextColor: $color-primary-0;
+
+// Clickable: Hover State
+$stateHoverBgColor: $color-primary-2;
+$stateHoverBorderColor: $color-primary-0;
+$stateHoverTextColor: $textColorLight;
+$stateDefaultIconTextColor: $textColorLight;
+
+// Clickable: Active State
+$stateActiveBgColor: $color-primary-3;
+$stateActiveBorderColor: $color-primary-0;
+$stateActiveTextColor: $textColorLight;
+
+// Clickable/Highlight State
+$stateHighlightBorderColor: $color-secondary-1-0;
+$stateHighlightBgColor: $color-secondary-1-2;
+$stateHighlightTextColor: $textColorLight;
+
+// Clickable: Focus State
+$stateFocusBgColor: $color-secondary-2-0;
+$stateFocusBorderColor: $color-secondary-2-3;
+$stateFocusTextColor: $textColorDark;
+
+// Error
+$stateErrorBgColor: $color-secondary-2-0;
+$stateErrorBorderColor: $color-secondary-2-3;
+$stateErrorTextColor: $textColorLight;
+
+//Forms
+$inputBgColor: $color-greyscale-1;
+$inputTextColor: $textColorDark;
+$invalidInputBorderColor: $color-secondary-2-4;
+$inputGroupTextColor: $textColorLight;
+
+// @compactGutterWidth: 1rem;
+// @veryCompactGutterWidth: .5rem;
+// @compactRowSpacing: 1rem;
+// @veryCompactRowSpacing: .5rem;

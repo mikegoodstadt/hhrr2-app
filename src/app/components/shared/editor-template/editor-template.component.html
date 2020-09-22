@@ -1,0 +1,58 @@
+<div class="container">
+  <h3 mat-dialog-title>
+    {{serviceName}}: {{record.name}}
+    <ng-container *ngIf="record.lastname">{{record.lastname}}</ng-container>
+  </h3>
+  <h4 class="inactive">ID reference: {{record.id | bigintString}}</h4>
+
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+    <div class="form">
+      
+      <p>
+        <mat-form-field color="primary">
+          <input matInput #input class="form-control" placeholder="Name" [(ngModel)]="record.name" name="name" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field color="primary" *ngIf="record.lastname">
+          <input matInput #input class="form-control" placeholder="Last Name" [(ngModel)]="record.lastname" name="lastname" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field color="primary" *ngIf="record.age">
+          <input matInput #input class="form-control" type="number" min="16" max="65" placeholder="Age" [(ngModel)]="record.age" name="age" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </p>
+      
+      <p>
+        <mat-form-field color="primary" *ngIf="record.startDate">
+          <input matInput #input class="form-control" type="date" placeholder="dd/MM/yyyy"
+          [ngModel]="record.startDate | date:'yyyy-MM-dd'" (ngModelChange)="record.startDate = $event"
+          name="startDate" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field color="primary" *ngIf="record.department">
+          <mat-label>Department</mat-label>
+          <mat-select [(ngModel)]="record.department" name="department">
+            <mat-option *ngFor="let dept of departments" [value]="dept">
+              {{dept}}
+            </mat-option>
+          </mat-select>
+          <!-- <input matInput #input class="form-control" placeholder="Department" [(ngModel)]="record.department" name="department" required > -->
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </p>
+
+    </div>
+
+    <div mat-dialog-actions align="end">
+      <button mat-button (click)="cancel()" tabindex="-1">Cancel</button>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="record" (click)="save()">Save</button>
+    </div>
+  </form>
+</div>

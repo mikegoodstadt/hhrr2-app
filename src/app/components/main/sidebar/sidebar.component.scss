@@ -1,0 +1,12 @@
+@import 'theme.scss';
+
+:host {
+  width: 0;
+  overflow: hidden;
+  // border-right: $headerBgColor 3px solid;
+  // padding: 5px;
+}
+:host .content {
+  // width: 87px;
+  padding: 0px;
+}

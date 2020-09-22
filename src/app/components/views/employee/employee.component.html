@@ -1,0 +1,11 @@
+<ng-container *ngIf="(employee | async) as empl; else loading">
+  <h2>Employee: {{ empl.name }} {{ empl.lastname }}</h2>
+
+  <table>
+    <tr *ngFor="let e of empl | keyvalue: originalOrder">
+      <td>{{e.key | titlecase}}:</td><td>{{ e.value }}</td>
+    </tr>
+  </table>
+  
+</ng-container>
+<ng-template #loading>Loading...</ng-template>

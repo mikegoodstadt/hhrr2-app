@@ -1,0 +1,49 @@
+@import 'theme.scss';
+
+:host {
+  padding: $padding;
+}
+
+table{
+  width: 100%;
+  table-layout: fixed;
+  th {
+    vertical-align: top;
+
+    &.mat-column-startDate {
+      position: relative;
+      button {
+        position: absolute;
+        // right: 0;
+        mat-icon {
+          vertical-align: text-top;
+        }
+        &.toggle {
+          height: 0;
+          line-height: 0;  
+        }
+      }
+      mat-form-field {
+        width: 80%;
+      }
+    }
+
+    &.mat-column-id {
+      width: 15%;
+    }
+
+    &.mat-column-actions {
+      width: 15%;
+    }
+    
+  }
+  td {
+    &.mat-column-id {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+}
+
