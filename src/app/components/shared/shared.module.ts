@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@app/app-material.module';
 
 import { CamelSpaced } from '@app/common/camelspaced.pipe';
-import { BigintString } from '@app/common/bigintString.pipe';
 
 import { MenuComponent } from './menu/menu.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
@@ -27,7 +26,6 @@ import { EditorReactiveComponent } from './editor-reactive/editor-reactive.compo
   ],
   declarations: [
     CamelSpaced,
-    BigintString,
     BreadcrumbsComponent,
     MenuComponent,
     DialogComponent,

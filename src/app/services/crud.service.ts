@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import bigInt from 'big-integer';
 import { IdService } from './id.service';
 import { DataService } from './data.service';
 import { Record } from '@app/models/record.model';
@@ -73,7 +72,7 @@ export abstract class CrudService<T extends Record> {
       recordsArray.push(record);
     }
     this.recordsStream.next(recordsArray);
-    const ids: bigInt.BigInteger[] = recordsArray.map(vals => vals.id);
+    const ids: bigint[] = recordsArray.map(vals => vals.id);
     this.idService.cache(ids);
     return recordsArray;
   }
@@ -91,8 +90,8 @@ export abstract class CrudService<T extends Record> {
   }
 
   // DELETE
-  public delete(id: bigInt.BigInteger): void {
-    const recordsArray: T[] = this.recordsStream.value.filter(record => record.id !== bigInt(id));
+  public delete(id: bigint): void {
+    const recordsArray: T[] = this.recordsStream.value.filter(record => record.id !== BigInt(id));
     this.idService.release(id);
     this.update(recordsArray);
   }

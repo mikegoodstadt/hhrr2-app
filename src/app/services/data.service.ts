@@ -4,13 +4,6 @@ import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Department } from '@app/models/department.model';
 import { Employee } from '@app/models/employee.model';
-import bigInt from 'big-integer';
-import JSONbig from 'json-bigint';
-import DUMMY_DEPTARTMENTS from '@assets/data/test-data-departments.json';
-import DUMMY_EMPLOYEES from '@assets/data/test-data-employees.json';
-
-// Example of HTTP Service included for Preuba Tecnnica:
-// const BASE_URL = 'https://swapi.co/api';
 
 const fakeDept = [
   {
@@ -70,7 +63,7 @@ export class DataService {
     if (name === 'Department') {
       let departments: Department[] = fakeDept.map(dept => {
         let department: Department = new Department;
-        department.id = bigInt(dept.id);
+        department.id = BigInt(dept.id);
         department.name = dept.name;
         return department;
       });
@@ -80,7 +73,7 @@ export class DataService {
       let employees: Employee[] = fakeEmpl.map(empl => {
         let employee: Employee = new Employee;
         // console.log(empl.id);
-        employee.id = bigInt(empl.id);
+        employee.id = BigInt(empl.id);
         employee.name = empl.name;
         employee.lastname = empl.lastname;
         employee.age = empl.age;
@@ -93,33 +86,5 @@ export class DataService {
   }
 
 
-  // public extractId(results: any[]): any {
-  //   console.log('Extracting id', results);
-  //   return results.map(res => {
-  //     const uuid = res.url.split(`${this.collection}/`)[1].split('/')[0];
-  //     return { uuid, ...res };
-  //   });
-  // }
-
-  // public getCharacters(path?: string): Observable<any> {
-  //   console.log('Get people from SWAPI...');
-  //   this.collection = 'people';
-  //   return this.getData();
-  // }
-
-  // public getData(): Observable<any> {
-  //   const path = `${BASE_URL}/${this.collection}`;
-  //   console.log('Path: ', path);
-  //   return this.httpClient.get(path)
-  //     .pipe(
-  //       map((res: any) => this.extractId(res.results)),
-  //       catchError(this.handleError)
-  //     );
-  // }
-
-  // private handleError(error) {
-  //   alert('No data returned:' + JSON.stringify(error));
-  //   return Observable.throw(error);
-  // }
 
 }

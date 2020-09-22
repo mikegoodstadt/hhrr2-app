@@ -3,7 +3,6 @@ import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DEPARTMENTS, DepartmentService } from '@app/services/department.service';
-import bigInt from 'big-integer';
 import { Utils } from '@app/common/utils';
 
 @Component({
@@ -16,7 +15,7 @@ export class EditorReactiveComponent implements OnInit {
   public record: any;
   public serviceName: string;
   public departments: any[];
-  public nextId: bigInt.BigInteger;
+  public nextId: bigint;
 
   public ageMin: number = 18;
   public ageMax: number = 65;

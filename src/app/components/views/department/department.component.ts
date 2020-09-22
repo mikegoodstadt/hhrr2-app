@@ -5,7 +5,6 @@ import { DEPARTMENTS, DepartmentService } from '@app/services/department.service
 import { EMPLOYEES, EmployeeService } from '@app/services/employee.service';
 import { EditorReactiveComponent } from '@app/components/shared/editor-reactive/editor-reactive.component';
 import { DialogComponent } from '@app/components/shared/dialog/dialog.component';
-import bigInt from 'big-integer'; 
 import { Record } from '@app/models/record.model';
 import { Department } from '@app/models/department.model';
 import { Employee } from '@app/models/employee.model';
@@ -51,9 +50,9 @@ export class DepartmentComponent implements OnInit {
 
   private getDepartment() {
     const paramId = this.route.snapshot.paramMap.get("id");
-    const bigId: bigInt.BigInteger = bigInt(paramId);
+    const bigId: bigint = BigInt(paramId);
     this.department = this.deptService.records.pipe(
-      map( arr => arr.find(rec => bigInt(rec.id).compare(bigId) === 0) )
+      map( arr => arr.find(rec => BigInt(rec.id) === bigId) )
     );
   }
 

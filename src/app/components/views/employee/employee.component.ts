@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EMPLOYEES, EmployeeService } from '@app/services/employee.service';
-import bigInt from 'big-integer'; 
 import { Employee } from '@app/models/employee.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -34,9 +33,9 @@ export class EmployeeComponent implements OnInit {
 
   private getEmployee() {
     const paramId = this.route.snapshot.paramMap.get("id");
-    const bigId: bigInt.BigInteger = bigInt(paramId);
+    const bigId: bigint = BigInt(paramId);
     this.employee = this.emplService.records.pipe(
-      map( arr => arr.find(rec => bigInt(rec.id).compare(bigId) === 0) )
+      map( arr => arr.find(rec => BigInt(rec.id) === bigId ) )
     )
   }
 

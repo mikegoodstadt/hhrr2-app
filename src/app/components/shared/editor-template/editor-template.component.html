@@ -3,7 +3,7 @@
     {{serviceName}}: {{record.name}}
     <ng-container *ngIf="record.lastname">{{record.lastname}}</ng-container>
   </h3>
-  <h4 class="inactive">ID reference: {{record.id | bigintString}}</h4>
+  <h4 class="inactive">ID reference: {{record.id}}</h4>
 
   <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
 

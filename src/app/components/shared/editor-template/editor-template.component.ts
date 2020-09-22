@@ -12,7 +12,7 @@ export class EditorTemplateComponent implements OnInit {
   public record: any;
   public serviceName: string;
   public departments: any[];
-  public nextId: bigInt.BigInteger;
+  public nextId: bigint;
 
   constructor(
     public dialogRef: MatDialogRef<EditorTemplateComponent>,
