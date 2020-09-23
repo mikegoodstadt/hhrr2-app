@@ -52,10 +52,9 @@ export class TableComponent implements OnInit {
     this.filterToggle = !this.filterToggle;
   }
   
-  public filter(event: Event) {
+  public filterDates(event: Event) {
     this.filterColor = 'warn';
     const checkDate = new Date((event.target as HTMLInputElement).value).getTime();
-    console.log(checkDate);
     this.dataSource = this.records.pipe(
       map(arr => arr.filter(rec => {
         console.log(rec['startDate']);

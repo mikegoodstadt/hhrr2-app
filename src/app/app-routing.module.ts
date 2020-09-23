@@ -15,7 +15,7 @@ const routes: Routes = [
   // },
   {
     path: 'employees',
-    component: AdminComponent,
+    component: DepartmentComponent,
     data: {
       breadcrumb: 'Employees',
       requiredService: EMPLOYEES,
@@ -24,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'departments',
-    component: AdminComponent,
+    component: DepartmentComponent,
     data: {
       breadcrumb: 'Departments',
       requiredService: DEPARTMENTS,
@@ -65,7 +65,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/employees'
+    redirectTo: '/departments'
   }
 ];
 
