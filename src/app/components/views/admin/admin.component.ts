@@ -18,7 +18,7 @@ export class AdminComponent implements OnInit {
     this.deptService.init()
     .then((val) => this.emplService.init())
     .then((val) => this.init())
-    .catch((err) => console.log(err));    this.init();
+    .catch((err) => console.log(err));
   }
 
   private init() {

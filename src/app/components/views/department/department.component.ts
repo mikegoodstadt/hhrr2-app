@@ -5,7 +5,6 @@ import { DEPARTMENTS, DepartmentService } from '@app/services/department.service
 import { EMPLOYEES, EmployeeService } from '@app/services/employee.service';
 import { EditorReactiveComponent } from '@app/components/shared/editor-reactive/editor-reactive.component';
 import { DialogComponent } from '@app/components/shared/dialog/dialog.component';
-import { Record } from '@app/models/record.model';
 import { Department } from '@app/models/department.model';
 import { Employee } from '@app/models/employee.model';
 import { Observable, combineLatest } from 'rxjs';
@@ -18,12 +17,12 @@ import { Utils } from '@app/common/utils';
   styleUrls: ['./department.component.scss']
 })
 export class DepartmentComponent implements OnInit {
-  public originalOrder = Utils.originalOrder;
   public department: Observable<Department>;
   public records: Observable<Employee[]>;
   public employees: Observable<Employee[]>;
   public serviceName: string;
   public displayedColumns: Observable<string[]>;
+  public originalOrder = Utils.originalOrder;
 
   constructor(
     private route: ActivatedRoute,
@@ -50,15 +49,15 @@ export class DepartmentComponent implements OnInit {
 
   private getDepartment() {
     const paramId = this.route.snapshot.paramMap.get("id");
-    const bigId: bigint = BigInt(paramId);
     this.department = this.deptService.records.pipe(
-      map( arr => arr.find(rec => BigInt(rec.id) === bigId) )
+      map( arr => arr.find(rec => rec.id === BigInt(paramId)) )
     );
   }
 
   private getEmployees() {
-    this.employees = combineLatest(this.records, this.department,
-      (empls: any[], dept: any) => empls.filter(empl => empl.department === dept.name) );
+    this.employees = combineLatest([this.records, this.department]).pipe(
+      map(([empls, dept]) => empls.filter(empl => empl.department === dept.name))
+    );
   }
 
   private getDisplayedColumns() {
@@ -71,19 +70,19 @@ export class DepartmentComponent implements OnInit {
     );
   }
   
-  public edit(record: Record) {
-    record = record || {id: null, name: ''};
+  public edit(employee: Employee) {
+    employee = employee || new Employee;
     let header = '';
-    if (record.id) {
-      header = 'Edit Record';
+    if (employee.id) {
+      header = 'Edit Employee';
     } else {
-      header = 'Create Record';
-      record = this.emplService.create();
+      header = 'Create Employee';
+      employee = this.emplService.create();
     }
     const dialogRef = this.dialog.open(EditorReactiveComponent, {
       data: {
         header: header,
-        record: record,
+        record: employee,
         serviceName: this.serviceName
       }
     });
@@ -92,16 +91,16 @@ export class DepartmentComponent implements OnInit {
     });
   }
   
-  public delete(record: Record): void {
+  public delete(employee: Employee): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       data: {
-        message: 'Are you sure want to delete this record?',
+        message: 'Are you sure want to delete this Employee?',
         confirmLabel: 'Save'
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      if (result) this.emplService.delete(record.id);
+      // console.log(result);
+      if (result) this.emplService.delete(employee);
     });
   }
 

@@ -1,4 +1,4 @@
 export class Record {
-  id: bigint = 0n;
-  name = 'Default Name';
+  id: bigint = null;
+  name: string = 'Default Name';
 }

@@ -3,19 +3,22 @@ import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DEPARTMENTS, DepartmentService } from '@app/services/department.service';
-import { Utils } from '@app/common/utils';
-
+import { AppDateAdapter, APP_DATE_FORMATS } from '@app/common/format-datepicker';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+ 
 @Component({
   selector: 'app-editor-reactive',
   templateUrl: './editor-reactive.component.html',
   styleUrls: ['./editor-reactive.component.scss'],
-  providers: [ DatePipe ]
+  providers: [ DatePipe,
+    {provide: DateAdapter, useClass: AppDateAdapter},
+    {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS}
+ ],
 })
 export class EditorReactiveComponent implements OnInit {
   public record: any;
   public serviceName: string;
   public departments: any[];
-  public nextId: bigint;
 
   public ageMin: number = 18;
   public ageMax: number = 65;
@@ -55,8 +58,8 @@ export class EditorReactiveComponent implements OnInit {
       minlength: 'Requires a minimum of 2 characters',
       min: 'Minimum age ' + this.ageMin + ' years.',
       max: 'Maximum age ' + this.ageMax + ' years',
-      matDatepickerMin: 'Please pick a date after ' + Utils.formattedDate(this.startDateMin),
-      matDatepickerMax: 'Please pick a date before ' + Utils.formattedDate(this.startDateMax),
+      matDatepickerMin: 'Please pick a date after ' + new Intl.DateTimeFormat('es-ES').format(this.startDateMin),
+      matDatepickerMax: 'Please pick a date before ' + new Intl.DateTimeFormat('es-ES').format(this.startDateMax),
     };
   }
 

@@ -80,7 +80,7 @@ export class DatatableComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result) this.recordsService.delete(record.id);
+      if (result) this.recordsService.delete(record);
     });
   }
 

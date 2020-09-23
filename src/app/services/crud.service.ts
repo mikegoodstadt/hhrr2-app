@@ -90,9 +90,9 @@ export abstract class CrudService<T extends Record> {
   }
 
   // DELETE
-  public delete(id: bigint): void {
-    const recordsArray: T[] = this.recordsStream.value.filter(record => record.id !== BigInt(id));
-    this.idService.release(id);
+  public delete(record: T): void {
+    const recordsArray: T[] = this.recordsStream.value.filter(rec => rec.id !== record.id);
+    this.idService.release(record.id);
     this.update(recordsArray);
   }
 

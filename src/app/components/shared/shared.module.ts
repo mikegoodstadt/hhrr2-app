@@ -12,7 +12,6 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { TableComponent } from './table/table.component';
 import { DatatableComponent } from './datatable/datatable.component';
-import { EditorTemplateComponent } from './editor-template/editor-template.component';
 import { EditorReactiveComponent } from './editor-reactive/editor-reactive.component';
 
 @NgModule({
@@ -31,7 +30,6 @@ import { EditorReactiveComponent } from './editor-reactive/editor-reactive.compo
     DialogComponent,
     TableComponent,
     DatatableComponent,
-    EditorTemplateComponent,
     EditorReactiveComponent,
 
   ],
@@ -45,7 +43,6 @@ import { EditorReactiveComponent } from './editor-reactive/editor-reactive.compo
     DialogComponent,
     TableComponent,
     DatatableComponent,
-    EditorTemplateComponent,
     EditorReactiveComponent,
   ],
 })

@@ -13,8 +13,8 @@ export class FooterComponent {
 
   public legalmenu: any[] = [
     { title: this.copyright, link: 'https://mikegoodstadt.com' },
-    { title: this.codebase, link: 'https://github.com/mikegoodstadt/hhrr-app' },
-    { title: 'Docker Container', link: 'https://hub.docker.com/r/mikegoodstadt/hhrr-app' }
+    { title: this.codebase, link: 'https://github.com/mikegoodstadt/hhrr2-app' },
+    { title: 'Docker Container', link: 'https://hub.docker.com/r/mikegoodstadt/hhrr2-app' }
   ];
 
 }

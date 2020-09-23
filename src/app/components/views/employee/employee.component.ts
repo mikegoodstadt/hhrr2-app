@@ -33,9 +33,8 @@ export class EmployeeComponent implements OnInit {
 
   private getEmployee() {
     const paramId = this.route.snapshot.paramMap.get("id");
-    const bigId: bigint = BigInt(paramId);
     this.employee = this.emplService.records.pipe(
-      map( arr => arr.find(rec => BigInt(rec.id) === bigId ) )
+      map( arr => arr.find(rec => rec.id === BigInt(paramId) ) )
     )
   }
 
