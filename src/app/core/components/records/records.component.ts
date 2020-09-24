@@ -42,7 +42,6 @@ export class RecordsComponent implements OnInit {
   private getDisplayedColumns() {
     this.displayedColumns = this.records.pipe(
       map(rec => {
-        console.log('cols:', rec);
         let cols = Object.keys(rec[0]);
         cols.push('actions');
         return cols;

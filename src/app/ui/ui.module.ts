@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@app/ui/ui-material.module';
 
 import { CamelSpaced } from '@app/shared/camelspaced.pipe';
@@ -33,7 +32,6 @@ import { SpinnerComponent } from './spinner/spinner.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     MaterialModule,
   ],
   exports: [
@@ -41,7 +39,6 @@ import { SpinnerComponent } from './spinner/spinner.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     MaterialModule,
     BreadcrumbsComponent,
     DialogComponent,
