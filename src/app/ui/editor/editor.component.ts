@@ -61,7 +61,6 @@ export class EditorComponent implements OnInit {
       matDatepickerMin: 'Please pick a date after ' + new Intl.DateTimeFormat('es-ES').format(this.startDateMin),
       matDatepickerMax: 'Please pick a date before ' + new Intl.DateTimeFormat('es-ES').format(this.startDateMax),
     };
-    console.log(this.errorMessages);
   }
 
   private generateForm() {

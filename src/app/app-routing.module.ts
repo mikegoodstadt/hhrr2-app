@@ -6,19 +6,19 @@ const routes: Routes = [
 
   {
     path: 'departments',
-    loadChildren: () => import('@app/departments/departments.module').then(m => m.DepartmentsModule)
+    loadChildren: () => import('./departments/departments.module').then(m => m.DepartmentsModule)
   },
   {
     path: 'department',
-    loadChildren: () => import('@app/employees/employees.module').then(m => m.EmployeesModule)
+    loadChildren: () => import('./employees/employees.module').then(m => m.EmployeesModule)
   },
   {
     path: 'employees',
-    loadChildren: () => import('@app/employees/employees.module').then(m => m.EmployeesModule)
+    loadChildren: () => import('./employees/employees.module').then(m => m.EmployeesModule)
   },
   {
-    path: 'profile',
-    loadChildren: () => import('@app/employees/employees.module').then(m => m.EmployeesModule)
+    path: 'employee',
+    loadChildren: () => import('./employees/employees.module').then(m => m.EmployeesModule)
   },
   {
     path: 'settings',
@@ -31,7 +31,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/settings'
+    redirectTo: '/employees'
   },
 ];
 
