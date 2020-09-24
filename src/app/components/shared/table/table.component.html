@@ -32,13 +32,13 @@
 
       <ng-container *ngIf="column == 'startDate'">{{ row[column] | date:'dd/MM/yyyy' }}</ng-container>
 
-      <button *ngIf="column == 'actions'" mat-icon-button color="primary" (click)="viewRecord(row)">
+      <button *ngIf="column == 'actions'" mat-icon-button color="primary" (click)="viewRecord(row)" matTooltip="View {{row.id}}">
         <mat-icon aria-label="View">pageview</mat-icon>
       </button>
-      <button *ngIf="column == 'actions'" mat-icon-button color="primary" (click)="editRecord(row)">
+      <button *ngIf="column == 'actions'" mat-icon-button color="primary" (click)="editRecord(row)" matTooltip="Edit {{row.id}}">
         <mat-icon aria-label="Edit">edit</mat-icon>
       </button>
-      <button *ngIf="column == 'actions'" mat-icon-button color="primary" (click)="deleteRecord(row)">
+      <button *ngIf="column == 'actions'" mat-icon-button color="primary" (click)="deleteRecord(row)" matTooltip="Delete {{row.name}}">
         <mat-icon aria-label="Delete">delete</mat-icon>
       </button>
     </td>
