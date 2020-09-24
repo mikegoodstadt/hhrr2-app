@@ -1,6 +1,5 @@
 <ng-container *ngIf="(records | async); else loading">
   <h2>{{ recordsTitle }}</h2>
-  before table
   <app-table
     [records]="records"
     [recordType]="recordType"
@@ -8,6 +7,5 @@
     (edit)="edit($event)"
     (delete)="delete($event)"
     ></app-table>
-    after table
 </ng-container>
 <ng-template #loading>loading...<app-spinner class="spinner"></app-spinner></ng-template>

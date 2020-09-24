@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
-import { CoreModule } from '@app/core/core.module';
 import { UiModule } from '@app/ui/ui.module';
 import { AppComponent } from './app.component';
 
@@ -10,7 +9,6 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule,
     UiModule,
   ],
   declarations: [
