@@ -1,31 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DepartmentsComponent } from './components/views/departments/departments.component';
-import { EmployeesComponent } from './components/views/employees/employees.component';
-import { EmployeeComponent } from './components/views/employee/employee.component';
-import { SettingsComponent } from './components/views/settings/settings.component';
+import {SettingsComponent } from '@app/settings/settings.component';
 
 const routes: Routes = [
-  // {
-  //   path: 'login',
-  //   component: LoginComponent,
-  //   outlet: 'system'
-  // },
-  {
-    path: 'employees',
-    component: EmployeesComponent,
-    data: {
-      breadcrumb: 'Employees',
-    },
-    // canActivate: [AuthGuard]
-  },
+
   {
     path: 'departments',
-    component: DepartmentsComponent,
-    data: {
-      breadcrumb: 'Departments',
-    },
-    // canActivate: [AuthGuard]
+    loadChildren: () => import('@app/departments/departments.module').then(m => m.DepartmentsModule)
+  },
+  {
+    path: 'department',
+    loadChildren: () => import('@app/employees/employees.module').then(m => m.EmployeesModule)
+  },
+  {
+    path: 'employees',
+    loadChildren: () => import('@app/employees/employees.module').then(m => m.EmployeesModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('@app/employees/employees.module').then(m => m.EmployeesModule)
   },
   {
     path: 'settings',
@@ -36,26 +29,10 @@ const routes: Routes = [
     // canActivate: [AuthGuard]
   },
   {
-    path: 'department/:id',
-    component: EmployeesComponent,
-    data: {
-      breadcrumb: 'Department',
-    },
-    // canActivate: [AuthGuard]
-  },
-  {
-    path: 'employee/:id',
-    component: EmployeeComponent,
-    data: {
-      breadcrumb: 'Employee',
-    }
-    // canActivate: [AuthGuard]
-  },
-  {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/employees'
-  }
+    redirectTo: '/settings'
+  },
 ];
 
 @NgModule({
