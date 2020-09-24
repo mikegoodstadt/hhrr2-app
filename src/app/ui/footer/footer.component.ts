@@ -1,5 +1,4 @@
-import { Component, HostBinding, VERSION } from '@angular/core';
-import { formatDate } from '@angular/common';
+import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -8,13 +7,6 @@ import { formatDate } from '@angular/common';
 })
 export class FooterComponent {
   @HostBinding('class') classes = 'footer';
-  private codebase = 'GitHub (MIT, ng' + VERSION.full + ')';
-  private copyright: string = '© ' + formatDate(Date.now(), 'yyyy', 'en') + ' Mike Goodstadt';
-
-  public legalmenu: any[] = [
-    { title: this.copyright, link: 'https://mikegoodstadt.com' },
-    { title: this.codebase, link: 'https://github.com/mikegoodstadt/hhrr2-app' },
-    { title: 'Docker Container', link: 'https://hub.docker.com/r/mikegoodstadt/hhrr2-app' }
-  ];
+  @Input() menu: string[] = [];
 
 }

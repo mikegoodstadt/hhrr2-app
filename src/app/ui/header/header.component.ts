@@ -7,6 +7,6 @@ import { Component, HostBinding, Input } from '@angular/core';
 })
 export class HeaderComponent {
   @HostBinding('class') classes = 'header';
-  @Input() topmenu: string[] = [];
+  @Input() menu: string[] = [];
 
 }

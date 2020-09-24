@@ -7,7 +7,7 @@ import { Component, OnInit, HostBinding, Input } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
   @HostBinding('class') classes = 'menu';
-  @Input() public menulist: any[] = [];
+  @Input() public menu: any[] = [];
 
   constructor() { }
 
