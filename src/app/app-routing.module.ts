@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AdminComponent } from './components/views/admin/admin.component';
-import { DepartmentComponent } from './components/views/department/department.component';
+import { DepartmentsComponent } from './components/views/departments/departments.component';
+import { EmployeesComponent } from './components/views/employees/employees.component';
 import { EmployeeComponent } from './components/views/employee/employee.component';
 import { SettingsComponent } from './components/views/settings/settings.component';
-import { DEPARTMENTS, DepartmentService } from './services/department.service';
-import { EMPLOYEES, EmployeeService } from './services/employee.service';
 
 const routes: Routes = [
   // {
@@ -15,19 +13,17 @@ const routes: Routes = [
   // },
   {
     path: 'employees',
-    component: DepartmentComponent,
+    component: EmployeesComponent,
     data: {
       breadcrumb: 'Employees',
-      requiredService: EMPLOYEES,
     },
     // canActivate: [AuthGuard]
   },
   {
     path: 'departments',
-    component: DepartmentComponent,
+    component: DepartmentsComponent,
     data: {
       breadcrumb: 'Departments',
-      requiredService: DEPARTMENTS,
     },
     // canActivate: [AuthGuard]
   },
@@ -41,10 +37,9 @@ const routes: Routes = [
   },
   {
     path: 'department/:id',
-    component: DepartmentComponent,
+    component: EmployeesComponent,
     data: {
       breadcrumb: 'Department',
-      requiredService: DEPARTMENTS,
     },
     // canActivate: [AuthGuard]
   },
@@ -53,34 +48,18 @@ const routes: Routes = [
     component: EmployeeComponent,
     data: {
       breadcrumb: 'Employee',
-      requiredService: EMPLOYEES,
     }
     // canActivate: [AuthGuard]
   },
-  // {
-  //   path: '',
-  //   component: SidebarComponent,
-  //   outlet: 'sidebar'
-  // },
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/departments'
+    redirectTo: '/employees'
   }
 ];
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes)],
-  exports: [ RouterModule],
-  providers: [
-    {
-      provide: DEPARTMENTS,
-      useClass: DepartmentService
-    },
-    {
-      provide: EMPLOYEES,
-      useClass: EmployeeService
-    }
-  ]
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule { }

@@ -1,9 +1,9 @@
-<ng-container *ngIf="(employees | async); else loading">
-  <h2>Department: {{ deptName }}</h2>
+<ng-container *ngIf="(records | async); else loading">
+  <h2>{{ recordsTitle }}</h2>
   <app-table
-    [records]="employees"
+    [records]="records"
+    [recordType]="recordType"
     [displayedColumns]="displayedColumns"
-    [serviceName]="serviceName"
     (edit)="edit($event)"
     (delete)="delete($event)"
     ></app-table>

@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/components/shared/shared.module';
 
-import { AdminComponent } from './admin/admin.component';
-import { SettingsComponent } from './settings/settings.component';
+import { DepartmentsComponent } from './departments/departments.component';
 import { EmployeeComponent } from './employee/employee.component';
-import { DepartmentComponent } from './department/department.component';
+import { EmployeesComponent } from './employees/employees.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   imports: [
@@ -13,13 +13,11 @@ import { DepartmentComponent } from './department/department.component';
     SharedModule,
   ],
   declarations: [
-    AdminComponent,
-    SettingsComponent,
+    DepartmentsComponent,
     EmployeeComponent,
-    DepartmentComponent,
+    EmployeesComponent,
+    SettingsComponent,
   ],
-  exports: [
-    AdminComponent,
-  ],
+  exports: [],
 })
 export class ViewsModule { }

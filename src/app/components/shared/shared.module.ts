@@ -7,12 +7,12 @@ import { MaterialModule } from '@app/app-material.module';
 
 import { CamelSpaced } from '@app/common/camelspaced.pipe';
 
-import { MenuComponent } from './menu/menu.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { EditorComponent } from './editor/editor.component';
+import { MenuComponent } from './menu/menu.component';
+import { RecordsComponent } from './records/records.component';
 import { TableComponent } from './table/table.component';
-import { DatatableComponent } from './datatable/datatable.component';
-import { EditorReactiveComponent } from './editor-reactive/editor-reactive.component';
 
 @NgModule({
   imports: [
@@ -26,11 +26,11 @@ import { EditorReactiveComponent } from './editor-reactive/editor-reactive.compo
   declarations: [
     CamelSpaced,
     BreadcrumbsComponent,
-    MenuComponent,
     DialogComponent,
+    EditorComponent,
+    MenuComponent,
+    RecordsComponent,
     TableComponent,
-    DatatableComponent,
-    EditorReactiveComponent,
 
   ],
   exports: [
@@ -39,11 +39,11 @@ import { EditorReactiveComponent } from './editor-reactive/editor-reactive.compo
     BrowserAnimationsModule,
     MaterialModule,
     BreadcrumbsComponent,
-    MenuComponent,
     DialogComponent,
+    EditorComponent,
+    MenuComponent,
+    RecordsComponent,
     TableComponent,
-    DatatableComponent,
-    EditorReactiveComponent,
   ],
 })
 export class SharedModule { }

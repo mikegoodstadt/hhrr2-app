@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EMPLOYEES, EmployeeService } from '@app/services/employee.service';
+import { EmployeeService } from '@app/services/employee.service';
 import { Employee } from '@app/models/employee.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -17,7 +17,7 @@ export class EmployeeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    @Inject(EMPLOYEES) public emplService: EmployeeService,
+    public emplService: EmployeeService,
   ) {
   }
 

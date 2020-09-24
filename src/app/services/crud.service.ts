@@ -9,7 +9,7 @@ import { Record } from '@app/models/record.model';
 })
 export abstract class CrudService<T extends Record> {
   private recordsStream: BehaviorSubject<T[]>;
-  public serviceName: string;
+  public recordType: string;
   public stored: boolean;
   public multiple: boolean;
   private initialized: boolean;
@@ -22,7 +22,7 @@ export abstract class CrudService<T extends Record> {
     ) {
     this.ctor = ctor;
     this.recordsStream = new BehaviorSubject<T[]>(null);
-    this.serviceName = ctor.name;
+    this.recordType = ctor.name;
     this.multiple = false;
     this.stored = false;
   }
@@ -34,7 +34,7 @@ export abstract class CrudService<T extends Record> {
       if (this.initialized) {
         resolve(this.initialized);
       } else {
-        recordsArray = recordsArray || this.dataService.getData(this.serviceName) ;
+        recordsArray = recordsArray || this.dataService.getData(this.recordType) ;
         recordsArray = this.update(recordsArray);
         this.initialized = true;
         resolve(this.initialized)

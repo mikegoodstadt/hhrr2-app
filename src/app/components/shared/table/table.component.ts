@@ -14,7 +14,7 @@ import { Record } from '@app/models/record.model'
 export class TableComponent implements OnInit {
   @Input() records: Observable<any[]>;
   public dataSource: Observable<any[]>;
-  @Input() serviceName: string;
+  @Input() recordType: string;
   @Input() displayedColumns: Observable<string[]>;
   @Output() edit: EventEmitter<any>;
   @Output() delete: EventEmitter<any>;
@@ -37,7 +37,7 @@ export class TableComponent implements OnInit {
 
   public viewRecord(record: Record) {
     const id = record.id.toString();
-    this.router.navigate([this.serviceName.toLowerCase(), id])
+    this.router.navigate([this.recordType.toLowerCase(), id])
   }
 
   public editRecord(record: Record) {
@@ -57,7 +57,6 @@ export class TableComponent implements OnInit {
     const checkDate = new Date((event.target as HTMLInputElement).value).getTime();
     this.dataSource = this.records.pipe(
       map(arr => arr.filter(rec => {
-        console.log(rec['startDate']);
         return rec['startDate'].getTime() >= checkDate;
       }))
     );

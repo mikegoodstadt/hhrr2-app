@@ -13,7 +13,7 @@ The DataService fetches dummy data from a mock API. An abstract CrudService prov
 
 Individual Department and Employee views are avaible by clicking on the view icon in the right-hand Actions column. In the header of this column is a button to add new records. Filtering by date can be performed by clicking the filter icon next to the column header and selecting a date.
 
-The Actions column also provides icon linking to edit and delete dialogs. Data records can be added or modified by the generic EditorReactiveComponent using Reactive Forms. (Another example of the editor is included which uses Template-Driven forms.) 
+The Actions column also provides icon linking to edit and delete dialogs. Data records can be added or modified by the generic EditorComponent using Reactive Forms. (Another example of the editor is included which uses Template-Driven forms.) 
 
 The Department and Emplyee Models extend a common RecordModel as Classes (as opposed to Interfaces) to provides a single source for both for Type definition, checking and defaults. Validation is performed in the form with the relevant error messages shown below the erroneous field.
 

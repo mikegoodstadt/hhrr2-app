@@ -2,22 +2,22 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DEPARTMENTS, DepartmentService } from '@app/services/department.service';
+import { DepartmentService } from '@app/services/department.service';
 import { AppDateAdapter, APP_DATE_FORMATS } from '@app/common/format-datepicker';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
  
 @Component({
-  selector: 'app-editor-reactive',
-  templateUrl: './editor-reactive.component.html',
-  styleUrls: ['./editor-reactive.component.scss'],
+  selector: 'app-editor',
+  templateUrl: './editor.component.html',
+  styleUrls: ['./editor.component.scss'],
   providers: [ DatePipe,
     {provide: DateAdapter, useClass: AppDateAdapter},
     {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS}
  ],
 })
-export class EditorReactiveComponent implements OnInit {
+export class EditorComponent implements OnInit {
   public record: any;
-  public serviceName: string;
+  public recordType: string;
   public departments: any[];
 
   public ageMin: number = 18;
@@ -27,14 +27,14 @@ export class EditorReactiveComponent implements OnInit {
   public errorMessages = {};
 
   constructor(
-    public dialogRef: MatDialogRef<EditorReactiveComponent>,
+    public dialogRef: MatDialogRef<EditorComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    @Inject(DEPARTMENTS) public deptService: DepartmentService,
+    public deptService: DepartmentService,
     private fb: FormBuilder,
     private datePipe: DatePipe,
     ) {
       this.record = this.data.record;
-      this.serviceName = data.serviceName;
+      this.recordType = data.recordType;
     }
     
   public editorForm: FormGroup;
@@ -61,10 +61,11 @@ export class EditorReactiveComponent implements OnInit {
       matDatepickerMin: 'Please pick a date after ' + new Intl.DateTimeFormat('es-ES').format(this.startDateMin),
       matDatepickerMax: 'Please pick a date before ' + new Intl.DateTimeFormat('es-ES').format(this.startDateMax),
     };
+    console.log(this.errorMessages);
   }
 
   private generateForm() {
-    if (this.serviceName === 'Employee') {
+    if (this.recordType === 'Employee') {
       this.editorForm = this.fb.group({
         id: [
           this.record.id,
@@ -106,7 +107,7 @@ export class EditorReactiveComponent implements OnInit {
         department: [
           this.record.department,
           [
-            Validators.required
+            Validators.required,
           ]
         ]
       })
