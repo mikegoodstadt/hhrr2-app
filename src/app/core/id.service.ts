@@ -4,21 +4,21 @@ import { Utils } from '@app/shared/utils';
   providedIn: 'root'
 })
 export class IdService {
-  public idCache: bigint[] = [];
+  public idCache: number[] = [];
 
   constructor() {}
 
-  public idExists(id: bigint): boolean {
+  public idExists(id: number): boolean {
     return this.idCache.includes(id);
   }
 
   public isValid(id: any): boolean {
-    return typeof(id) === 'bigint';
+    return typeof(id) === 'number';
   }
 
-  public generate(): bigint {
+  public generate(): number {
     let isUnique = false;
-    let nextId: bigint = this.idCache[this.idCache.length-1];
+    let nextId: number = this.idCache[this.idCache.length-1];
     let count = 0;
     // Find next sequential unique Id.
     while (!isUnique) {
@@ -35,7 +35,7 @@ export class IdService {
       while (!isUnique) {
         if (count >= 10) break;
         count++;
-        nextId = BigInt(Utils.randBetween(0,999));
+        nextId = Utils.randBetween(0,999);
         if (!this.idExists(nextId)) {
           isUnique = true;
         }
@@ -43,7 +43,7 @@ export class IdService {
     }
     // If still none is found after 10 random attempts, return zero and warn.
     if (!isUnique) {
-      nextId = BigInt(0);
+      nextId = 0;
       console.log('No Unique ID found - increase number of attempts of assign manually.')
     }
     return nextId;
@@ -60,7 +60,7 @@ export class IdService {
     this.idCache.sort( (a, b) => a < b ? -1 : 1 );
   }
 
-  public release(id: bigint): void {
+  public release(id: number): void {
     const index = this.idCache.indexOf(id);
     this.idCache.splice(index, 1);
   }

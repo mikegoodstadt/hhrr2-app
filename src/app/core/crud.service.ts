@@ -24,7 +24,7 @@ export abstract class CrudService<T extends Record> {
   public create(props?: T): T {
     if (props) Object.keys(props).forEach((key) => (props[key] == null) && delete props[key]);
     let record = this.model;
-    record.id = this.idService.generate();
+    record.id = this.getId();
     return Object.assign(record, props);
   }
 
@@ -38,9 +38,15 @@ export abstract class CrudService<T extends Record> {
   }
 
   public getRecords(): T[] {
-    let recs;
-    this.dataService.records(this.recordType).subscribe(r => recs = r);
-    return recs;
+    let records: T[];
+    this.dataService.records(this.recordType).subscribe(recs => records = recs);
+    return records;
+  }
+
+  public getId(): number {
+    const idList: number[] = this.getRecords().map(rec => rec.id);
+    this.idService.cache(idList);
+    return this.idService.generate();
   }
 
   // UPDATE
