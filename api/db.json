@@ -15,36 +15,44 @@
   ],
   "employees": [
     {
-			"id": 10001,
-			"name": "Alexa",
-			"lastname": "Manages",
-			"age": 42,
-			"startDate": "09/11/1989",
-			"department": "HR"
+      "id": 10001,
+      "name": "Alexa",
+      "lastname": "Managed",
+      "age": 42,
+      "startDate": "1989-11-15",
+      "department": "HR"
     },
     {
-			"id": 10002,
-			"name": "Victor",
-			"lastname": "Devlead",
-			"age": 64,
-			"startDate": "09/06/2014",
-			"department": "IT"
+      "id": 10002,
+      "name": "Victor",
+      "lastname": "Devlead",
+      "age": 64,
+      "startDate": "2014-06-09T09:00:00.000Z",
+      "department": "IT"
     },
     {
-			"id": 10003,
-			"name": "Mike",
-			"lastname": "Frontend",
-			"age": 33,
-			"startDate": "01/01/2019",
-			"department": "IT"
+      "id": 10003,
+      "name": "Mike",
+      "lastname": "Frontend",
+      "age": 33,
+      "startDate": "2019-01-02T23:00:00.000Z",
+      "department": "HR"
     },
     {
-			"id": 10004,
-			"name": "Billie",
-			"lastname": "Chatbot",
-			"age": 21,
-			"startDate": "01/09/2020",
-			"department": "Sales"
+      "id": 10004,
+      "name": "Billie",
+      "lastname": "Chatbot",
+      "age": 21,
+      "startDate": "2020-09-01T09:00:00.000Z",
+      "department": "Sales"
+    },
+    {
+      "id": 10005,
+      "name": "Name",
+      "lastname": "Lastname",
+      "age": 34,
+      "startDate": "2020-09-25",
+      "department": "IT"
     }
   ]
 }

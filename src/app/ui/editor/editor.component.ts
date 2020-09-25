@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DepartmentService } from '@app/departments/department.service';
 import { AppDateAdapter, APP_DATE_FORMATS } from '@app/shared/format-datepicker';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { Observable } from 'rxjs';
  
 @Component({
   selector: 'app-editor',
@@ -18,7 +19,7 @@ import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 export class EditorComponent implements OnInit {
   public record: any;
   public recordType: string;
-  public departments: any[];
+  public departments: Observable<string[]>;
 
   public ageMin: number = 18;
   public ageMax: number = 65;
@@ -45,8 +46,8 @@ export class EditorComponent implements OnInit {
     this.generateForm();
   }
 
-  private async getDepartments() {
-    this.departments = await this.deptService.getRecords().map(dept => dept.name);
+  private getDepartments() {
+    this.departments = this.deptService.nameList;
   }
 
   private setErrorMessages() {

@@ -19,7 +19,7 @@
 			"name": "Alexa",
 			"lastname": "Manages",
 			"age": 42,
-			"startDate": "09/11/1989",
+			"startDate": "1989-11-09T09:00:00.000Z",
 			"department": "HR"
     },
     {
@@ -27,7 +27,7 @@
 			"name": "Victor",
 			"lastname": "Devlead",
 			"age": 64,
-			"startDate": "09/06/2014",
+			"startDate": "2014-06-09T09:00:00.000Z",
 			"department": "IT"
     },
     {
@@ -35,7 +35,7 @@
 			"name": "Mike",
 			"lastname": "Frontend",
 			"age": 33,
-			"startDate": "01/01/2019",
+			"startDate": "2019-01-01T09:00:00.000Z",
 			"department": "IT"
     },
     {
@@ -43,7 +43,7 @@
 			"name": "Billie",
 			"lastname": "Chatbot",
 			"age": 21,
-			"startDate": "01/09/2020",
+			"startDate": "2020-09-01T09:00:00.000Z",
 			"department": "Sales"
     }
   ]

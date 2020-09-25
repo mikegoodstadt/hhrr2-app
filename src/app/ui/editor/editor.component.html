@@ -5,9 +5,17 @@
   </h3>
   <h4 class="inactive">ID reference: {{record.id}}</h4>
 
+
   <form class="mat-dialog-content" [formGroup]="editorForm">
     <!-- Value: {{ editorForm.value | json }} -->
-      
+   <mat-form-field color="primary">
+      <input matInput #input formControlName="id" placeholder="ID Number" required >
+      <mat-error>
+        <ng-container *ngFor="let error of errors(editorForm.get('id'))">
+          {{ errorMessages[error] }} <br/>
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
       <p>
         <mat-form-field color="primary">
           <input matInput #input formControlName="name" placeholder="Name" required >
@@ -55,7 +63,7 @@
         <mat-form-field color="primary" *ngIf="record.department">
           <mat-label>Department</mat-label>
           <mat-select formControlName="department" placeholder="Select Department">
-            <ng-container *ngFor="let dept of departments">
+            <ng-container *ngFor="let dept of (departments | async)">
               <mat-option [value]="dept">
                 {{dept}}
               </mat-option>

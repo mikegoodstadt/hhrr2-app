@@ -1,8 +1,8 @@
 import { Injectable, InjectionToken } from '@angular/core';
 import { CrudService } from '@app/core/crud.service';
-import { IdService } from '@app/core/id.service';
 import { DataService } from '@app/core/data.service';
-import { Department } from './department.model'
+import { Department } from './department.model';
+import { map } from 'rxjs/operators';
 
 export const DEPARTMENTS = new InjectionToken<string>('DepartmentService');
 
@@ -12,9 +12,9 @@ export const DEPARTMENTS = new InjectionToken<string>('DepartmentService');
 export class DepartmentService extends CrudService<Department> {
 
   constructor(
-    public idService: IdService,
     public dataService: DataService,
   ) {
-    super(Department, idService, dataService);
+    super(Department, dataService);
   }
+
 }

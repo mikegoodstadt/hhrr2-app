@@ -47,15 +47,13 @@ export class RecordsComponent implements OnInit {
     );
   }
   
-  public edit(record: Record) {
-    record = record || new Record;
-    let header = '';
-    if (record.id) {
-      header = 'Edit ' + this.recordType;
-    } else {
-      header = 'Create ' + this.recordType;
-      record = this.recordService.create();
+  public async edit(record: Record) {
+    let mode = 'Edit';
+    if (!record) {
+      mode = 'New';
+      record = await this.recordService.new();
     }
+    let header = `${mode} ${this.recordType}`;
     const dialogRef = this.dialog.open(EditorComponent, {
       data: {
         header: header,
@@ -64,7 +62,14 @@ export class RecordsComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result) this.recordService.update(result);
+      if (result) {
+        if (mode === 'New') {
+          this.recordService.add(result);
+        } else {
+          this.recordService.update(result);
+        }  
+        this.records = this.recordService.records;
+      }
     });
   }
   
@@ -76,7 +81,10 @@ export class RecordsComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result) this.recordService.delete(record);
+      if (result) {
+        this.recordService.delete(record);
+        this.records = this.recordService.records;
+      };
     });
   }
 
