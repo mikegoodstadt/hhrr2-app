@@ -4,7 +4,7 @@ import { CrudService } from '@app/core/crud.service';
 import { EditorComponent } from '@app/ui/editor/editor.component';
 import { DialogComponent } from '@app/ui/dialog/dialog.component';
 import { Record } from '@app/core/record.model';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Utils } from '@app/shared/utils';
 

@@ -45,8 +45,8 @@ export class EditorComponent implements OnInit {
     this.generateForm();
   }
 
-  private getDepartments() {
-    this.departments = this.deptService.getRecords().map(dept => dept.name);
+  private async getDepartments() {
+    this.departments = await this.deptService.getRecords().map(dept => dept.name);
   }
 
   private setErrorMessages() {

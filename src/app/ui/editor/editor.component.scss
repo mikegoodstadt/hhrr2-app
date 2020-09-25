@@ -6,6 +6,9 @@ h4.inactive {
   color: grey;
   font-size: 80%; 
 }
+.mat-dialog-content {
+  overflow: hidden;
+}
 mat-form-field {
   padding-right: $paddingHoriz;
 }

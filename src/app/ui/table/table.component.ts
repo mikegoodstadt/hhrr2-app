@@ -13,7 +13,7 @@ export class TableComponent implements OnInit {
   @Input() records: Observable<any[]>;
   public dataSource: Observable<any[]>;
   @Input() recordType: string;
-  @Input() displayedColumns: Observable<string[]>;
+  @Input() displayedColumns: string[];
   @Output() edit: EventEmitter<any>;
   @Output() delete: EventEmitter<any>;
   public filterToggle = false;
@@ -29,17 +29,12 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.records.subscribe(rec => console.log(rec));
-    console.log('table records', this.records)
     this.dataSource = this.records;
-    // this.dataSource.subscribe(rec => console.log(rec));
-    console.log('table dataSource', this.dataSource)
   }
 
   public viewRecord(record: Record) {
     let path = this.recordType.toLowerCase();
     const id = (path === 'department') ? record.name.toLowerCase() : record.id.toString();
-    console.log('path/id: ', path, '/', id);
     this.router.navigate([path, id])
   }
 

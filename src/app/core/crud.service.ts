@@ -50,14 +50,15 @@ export abstract class CrudService<T extends Record> {
   }
 
   // UPDATE
-  public update(recordsArray?: T[]): boolean {
-
+  public update(record: T): boolean {
+    this.dataService.update(this.recordType, record.id);
     return true;
   }
 
   // DELETE
   public delete(record: T): boolean {
-
+    console.log('crud deleting...');
+    this.dataService.delete(this.recordType, record.id);
     return true;
   }
 

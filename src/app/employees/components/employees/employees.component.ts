@@ -30,24 +30,14 @@ export class EmployeesComponent extends RecordsComponent {
   }
 
   ngOnInit(): void {
-    this.setDepartments();
     this.setEmployees();
     this.init();
   }
 
-  private setDepartments() {
-    const paramId = this.route.snapshot.paramMap.get("id");
-    this.departments = this.deptService.records.pipe(
-      map( arr => (paramId) ? arr.filter(rec => rec.name.toLowerCase() === paramId) : arr )
-    );
-  }
-
   private setEmployees() {
-    this.records = combineLatest([this.records, this.departments]).pipe(
-      map(([empls, depts]) => {
-        const deptNames = depts.map(d => d.name);
-        return empls.filter(empl => deptNames.includes(empl.department))
-       })
+    const paramId = this.route.snapshot.paramMap.get("id");
+    this.records = this.records.pipe(
+      map( empls => (paramId) ? empls.filter(empl => empl.department.toLowerCase() === paramId) : empls )
     );
   }
 

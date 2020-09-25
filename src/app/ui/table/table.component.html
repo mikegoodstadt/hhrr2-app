@@ -1,6 +1,6 @@
 <table mat-table [dataSource]="dataSource">
   
-  <ng-container [matColumnDef]="column" *ngFor="let column of (displayedColumns | async)">
+  <ng-container *ngFor="let column of (displayedColumns | async)" [matColumnDef]="column">
     <th mat-header-cell *matHeaderCellDef>
       <ng-container *ngIf="column != 'id' && column != 'startDate' && column != 'actions'">{{ column | camelspaced | titlecase }}</ng-container>
       <ng-container *ngIf="column == 'id'">ID Number</ng-container>

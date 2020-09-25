@@ -5,17 +5,12 @@ import { Utils } from '@app/shared/utils';
 })
 export class IdService {
   public idCache: number[] = [];
+  private minId = 0;
+  private maxId = 100000;
 
   constructor() {}
 
-  public idExists(id: number): boolean {
-    return this.idCache.includes(id);
-  }
-
-  public isValid(id: any): boolean {
-    return typeof(id) === 'number';
-  }
-
+  // CREATE
   public generate(): number {
     let isUnique = false;
     let nextId: number = this.idCache[this.idCache.length-1];
@@ -35,7 +30,7 @@ export class IdService {
       while (!isUnique) {
         if (count >= 10) break;
         count++;
-        nextId = Utils.randBetween(0,999);
+        nextId = Utils.randBetween(this.minId, this.maxId);
         if (!this.idExists(nextId)) {
           isUnique = true;
         }
@@ -49,9 +44,19 @@ export class IdService {
     return nextId;
   }
 
-  public cache(idArray: any[]): void {
+  // READ
+  public isValid(id: any): boolean {
+    return (typeof(id) === 'number' && (id > this.minId && id < this.maxId)) ? true : false;
+  }
+
+  public idExists(id: number): boolean {
+    return this.idCache.includes(id);
+  }
+
+  // UPDATE
+  public cache(idArray: number[]): void {
     for (const id of idArray) {
-      if (!this.idExists(id)) {
+      if (this.isValid(id) && !this.idExists(id)) {
         this.idCache.push(id);
       } else {
         // console.log('Duplicate ID: ', id);
@@ -60,6 +65,7 @@ export class IdService {
     this.idCache.sort( (a, b) => a < b ? -1 : 1 );
   }
 
+  // DELETE
   public release(id: number): void {
     const index = this.idCache.indexOf(id);
     this.idCache.splice(index, 1);
