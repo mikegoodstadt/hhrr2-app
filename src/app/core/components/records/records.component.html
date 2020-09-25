@@ -1,0 +1,11 @@
+<ng-container *ngIf="(records | async) as recds; else loading">
+  <h2>{{ recordsTitle }}</h2>
+  <app-table
+    [records]="recds"
+    [recordType]="recordType"
+    [displayedColumns]="displayedColumns"
+    (edit)="edit($event)"
+    (delete)="delete($event)"
+    ></app-table>
+</ng-container>
+<ng-template #loading>loading...<app-spinner class="spinner"></app-spinner></ng-template>
