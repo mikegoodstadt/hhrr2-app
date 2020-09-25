@@ -14,15 +14,7 @@ const routes: Routes = [
     // canActivate: [AuthGuard]
   },
   {
-    path: 'department/:id',
-    component: EmployeesComponent,
-    data: {
-      breadcrumb: 'Department',
-    },
-    // canActivate: [AuthGuard]
-  },
-  {
-    path: 'profile/:id',
+    path: ':id',
     component: ProfileComponent,
     data: {
       breadcrumb: 'Profile',

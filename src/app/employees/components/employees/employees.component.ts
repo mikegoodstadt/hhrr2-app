@@ -29,6 +29,7 @@ export class EmployeesComponent extends RecordsComponent {
   }
 
   ngOnInit(): void {
+    console.log('employees init');
     this.deptService.init()
     .then((val) => this.emplService.init())
     .then((val) => this.getDepartments())
@@ -39,9 +40,9 @@ export class EmployeesComponent extends RecordsComponent {
 
   private getDepartments() {
     const paramId = this.route.snapshot.paramMap.get("id");
-    // console.log(paramId);
+    // console.log('paramId', paramId);
     this.departments = this.deptService.records.pipe(
-      map( arr => (paramId) ? arr.filter(rec => rec.id === BigInt(paramId)) : arr )
+      map( arr => (paramId) ? arr.filter(rec => rec.name.toLowerCase() === paramId) : arr )
     );
     // this.departments.subscribe(recs => console.log('depts:', recs));
   }
@@ -54,7 +55,7 @@ export class EmployeesComponent extends RecordsComponent {
         return empls.filter(empl => deptNames.includes(empl.department))
        })
     );
-    // this.records.subscribe(recs => console.log('empls:', recs));
+    this.records.subscribe(recs => console.log('empls:', recs));
   }
 
 }

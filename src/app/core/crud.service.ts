@@ -32,8 +32,10 @@ export abstract class CrudService<T extends Record> {
     this.initialized = this.initialized || false;
     const promise: Promise<boolean> = new Promise((resolve, reject) => {
       if (this.initialized) {
+        console.log('initialized', this.recordType, '!');
         resolve(this.initialized);
       } else {
+        console.log('initialing', this.recordType, '...');
         recordsArray = recordsArray || this.dataService.getData(this.recordType) ;
         recordsArray = this.update(recordsArray);
         this.initialized = true;

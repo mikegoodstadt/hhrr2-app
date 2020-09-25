@@ -29,12 +29,16 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.records.subscribe(rec => console.log(rec));
     this.dataSource = this.records;
+    this.dataSource.subscribe(rec => console.log(rec));
   }
 
   public viewRecord(record: Record) {
-    const id = record.id.toString();
-    this.router.navigate([this.recordType.toLowerCase(), id])
+    let path = this.recordType.toLowerCase();
+    const id = (path === 'department') ? record.name.toLowerCase() : record.id.toString();
+    console.log('path/id: ', path, '/', id);
+    this.router.navigate([path, id])
   }
 
   public editRecord(record: Record) {

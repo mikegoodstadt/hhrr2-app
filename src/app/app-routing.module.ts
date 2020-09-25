@@ -3,21 +3,20 @@ import { Routes, RouterModule } from '@angular/router';
 import { SettingsComponent } from '@app/settings/settings.component';
 
 const routes: Routes = [
-
+  {
+    path: 'department',
+    loadChildren: () => import('./departments/departments.module').then(m => m.DepartmentsModule)
+  },
   {
     path: 'departments',
     loadChildren: () => import('./departments/departments.module').then(m => m.DepartmentsModule)
   },
   {
-    path: 'department',
+    path: 'employee',
     loadChildren: () => import('./employees/employees.module').then(m => m.EmployeesModule)
   },
   {
     path: 'employees',
-    loadChildren: () => import('./employees/employees.module').then(m => m.EmployeesModule)
-  },
-  {
-    path: 'employee',
     loadChildren: () => import('./employees/employees.module').then(m => m.EmployeesModule)
   },
   {

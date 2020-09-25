@@ -30,6 +30,7 @@ export class RecordsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('records init');
     this.recordService.init()
     .then((val) => this.init())
     .catch((err) => console.log(err));
@@ -37,6 +38,7 @@ export class RecordsComponent implements OnInit {
 
   public init() {
     this.getDisplayedColumns();
+    console.log('done init');
   }
 
   private getDisplayedColumns() {
