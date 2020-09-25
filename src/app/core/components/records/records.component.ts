@@ -30,15 +30,11 @@ export class RecordsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('records init');
-    this.recordService.init()
-    .then((val) => this.init())
-    .catch((err) => console.log(err));
+    this.init();
   }
 
   public init() {
     this.getDisplayedColumns();
-    console.log('done init');
   }
 
   private getDisplayedColumns() {
@@ -68,7 +64,7 @@ export class RecordsComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result) this.recordService.updateRecord(result);
+      if (result) this.recordService.update(result);
     });
   }
   

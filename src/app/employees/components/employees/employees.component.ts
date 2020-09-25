@@ -26,36 +26,29 @@ export class EmployeesComponent extends RecordsComponent {
     private route: ActivatedRoute,
   ) {
     super(emplService, dialog);
+    this.departments = this.deptService.records;
   }
 
   ngOnInit(): void {
-    console.log('employees init');
-    this.deptService.init()
-    .then((val) => this.emplService.init())
-    .then((val) => this.getDepartments())
-    .then((val) => this.getEmployees())
-    .then((val) => this.init())
-    .catch((err) => console.log(err));
+    this.setDepartments();
+    this.setEmployees();
+    this.init();
   }
 
-  private getDepartments() {
+  private setDepartments() {
     const paramId = this.route.snapshot.paramMap.get("id");
-    // console.log('paramId', paramId);
     this.departments = this.deptService.records.pipe(
       map( arr => (paramId) ? arr.filter(rec => rec.name.toLowerCase() === paramId) : arr )
     );
-    // this.departments.subscribe(recs => console.log('depts:', recs));
   }
 
-  private getEmployees() {
+  private setEmployees() {
     this.records = combineLatest([this.records, this.departments]).pipe(
       map(([empls, depts]) => {
         const deptNames = depts.map(d => d.name);
-        // console.log(deptNames);
         return empls.filter(empl => deptNames.includes(empl.department))
        })
     );
-    this.records.subscribe(recs => console.log('empls:', recs));
   }
 
 }

@@ -1,0 +1,50 @@
+{
+  "departments": [
+    {
+      "id": 1,
+      "name": "HR"
+    },
+    {
+      "id": 2,
+      "name": "IT"
+    },
+    {
+      "id": 3,
+      "name": "Sales"
+    }
+  ],
+  "employees": [
+    {
+			"id": 10001,
+			"name": "Alexa",
+			"lastname": "Manages",
+			"age": 42,
+			"startDate": "09/11/1989",
+			"department": "HR"
+    },
+    {
+			"id": 10002,
+			"name": "Victor",
+			"lastname": "Devlead",
+			"age": 64,
+			"startDate": "19/06/2014",
+			"department": "IT"
+    },
+    {
+			"id": 10003,
+			"name": "Mike",
+			"lastname": "Frontend",
+			"age": 33,
+			"startDate": "01/01/2019",
+			"department": "IT"
+    },
+    {
+			"id": 10004,
+			"name": "Billie",
+			"lastname": "Chatbot",
+			"age": 21,
+			"startDate": "01/09/2020",
+			"department": "Sales"
+    }
+  ]
+}

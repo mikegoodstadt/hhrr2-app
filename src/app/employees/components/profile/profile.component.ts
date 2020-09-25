@@ -22,19 +22,14 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.emplService.init()
-    .then((val) => this.init())
-    .catch((err) => console.log(err));
-  }
-  
-  private init() {
     this.getEmployee();
   }
 
   private getEmployee() {
-    const paramId = this.route.snapshot.paramMap.get("id");
+    const paramId: number = parseInt(this.route.snapshot.paramMap.get("id"));
+    console.log(paramId);
     this.employee = this.emplService.records.pipe(
-      map( arr => arr.find(rec => rec.id === BigInt(paramId) ) )
+      map( arr => arr.find(rec => rec.id === paramId ) )
     )
   }
 

@@ -46,7 +46,7 @@ export class EditorComponent implements OnInit {
   }
 
   private getDepartments() {
-    this.departments = this.deptService.getRecordsAll().map(dept => dept.name);
+    this.departments = this.deptService.getRecords().map(dept => dept.name);
   }
 
   private setErrorMessages() {

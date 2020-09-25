@@ -29,9 +29,11 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.records.subscribe(rec => console.log(rec));
+    // this.records.subscribe(rec => console.log(rec));
+    console.log('table records', this.records)
     this.dataSource = this.records;
-    this.dataSource.subscribe(rec => console.log(rec));
+    // this.dataSource.subscribe(rec => console.log(rec));
+    console.log('table dataSource', this.dataSource)
   }
 
   public viewRecord(record: Record) {

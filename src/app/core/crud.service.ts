@@ -8,11 +8,7 @@ import { Record } from './record.model';
   providedIn: 'root'
 })
 export abstract class CrudService<T extends Record> {
-  private recordsStream: BehaviorSubject<T[]>;
   public recordType: string;
-  public stored: boolean;
-  public multiple: boolean;
-  private initialized: boolean;
   private ctor: { new(): T };
 
   constructor(
@@ -21,28 +17,7 @@ export abstract class CrudService<T extends Record> {
     public dataService: DataService,
     ) {
     this.ctor = ctor;
-    this.recordsStream = new BehaviorSubject<T[]>(null);
     this.recordType = ctor.name;
-    this.multiple = false;
-    this.stored = false;
-  }
-
-  // INIT
-  public init(recordsArray?: T[]): Promise<boolean> {
-    this.initialized = this.initialized || false;
-    const promise: Promise<boolean> = new Promise((resolve, reject) => {
-      if (this.initialized) {
-        console.log('initialized', this.recordType, '!');
-        resolve(this.initialized);
-      } else {
-        console.log('initialing', this.recordType, '...');
-        recordsArray = recordsArray || this.dataService.getData(this.recordType) ;
-        recordsArray = this.update(recordsArray);
-        this.initialized = true;
-        resolve(this.initialized)
-      }
-    });
-    return promise;
   }
 
   // CREATE
@@ -59,43 +34,25 @@ export abstract class CrudService<T extends Record> {
   }
 
   public get records(): Observable<T[]> {
-    return this.recordsStream.asObservable();
+    return this.dataService.records(this.recordType);
   }
 
-  public getRecordsAll(): T[] {
-    return this.recordsStream.value;
+  public getRecords(): T[] {
+    let recs;
+    this.dataService.records(this.recordType).subscribe(r => recs = r);
+    return recs;
   }
 
   // UPDATE
-  public update(recordsArray?: T[]): T[] {
-    recordsArray = recordsArray || this.recordsStream.value || [];
-    if (!recordsArray.length) {
-      const record = this.create();
-      recordsArray.push(record);
-    }
-    this.recordsStream.next(recordsArray);
-    const ids: bigint[] = recordsArray.map(vals => vals.id);
-    this.idService.cache(ids);
-    return recordsArray;
-  }
+  public update(recordsArray?: T[]): boolean {
 
-  public updateRecord(record: T): void {
-    record.id = record.id || this.idService.generate();
-    let recordsArray = this.recordsStream.value;
-    const index = recordsArray.findIndex(rec => rec.id === record.id);
-    if (index < 0) {
-      recordsArray = [ ...this.recordsStream.value, record ];
-    } else {
-      recordsArray.splice(index, 1, record);
-    }
-    this.update(recordsArray);
+    return true;
   }
 
   // DELETE
-  public delete(record: T): void {
-    const recordsArray: T[] = this.recordsStream.value.filter(rec => rec.id !== record.id);
-    this.idService.release(record.id);
-    this.update(recordsArray);
+  public delete(record: T): boolean {
+
+    return true;
   }
 
 }
