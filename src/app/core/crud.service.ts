@@ -24,7 +24,6 @@ export abstract class CrudService<T extends Record> {
     if (props) Object.keys(props).forEach((key) => (props[key] == null) && delete props[key]);
     let record = this.model;
     record.id = await this.newId();
-    console.log(record);
     return Object.assign(record, props);
   }
 

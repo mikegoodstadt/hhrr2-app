@@ -45,14 +45,6 @@
       "age": 21,
       "startDate": "2020-09-01T09:00:00.000Z",
       "department": "Sales"
-    },
-    {
-      "id": 10005,
-      "name": "Name",
-      "lastname": "Lastname",
-      "age": 34,
-      "startDate": "2020-09-25",
-      "department": "IT"
     }
   ]
 }
