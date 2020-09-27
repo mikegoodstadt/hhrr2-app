@@ -7,6 +7,10 @@
   ],
   "departments": [
     {
+      "id": 0,
+      "name": "Default"
+    },
+    {
       "id": 1,
       "name": "HR"
     },
@@ -26,7 +30,7 @@
 			"lastname": "Manages",
 			"age": 42,
 			"startDate": "1989-11-09T09:00:00.000Z",
-			"department": "HR"
+			"department": 1
     },
     {
 			"id": 10002,
@@ -34,7 +38,7 @@
 			"lastname": "Devlead",
 			"age": 64,
 			"startDate": "2014-06-09T09:00:00.000Z",
-			"department": "IT"
+			"department": 2
     },
     {
 			"id": 10003,
@@ -42,7 +46,7 @@
 			"lastname": "Frontend",
 			"age": 33,
 			"startDate": "2019-01-01T09:00:00.000Z",
-			"department": "IT"
+			"department": 2
     },
     {
 			"id": 10004,
@@ -50,7 +54,7 @@
 			"lastname": "Chatbot",
 			"age": 21,
 			"startDate": "2020-09-01T09:00:00.000Z",
-			"department": "Sales"
+			"department": 3
     }
   ]
 }

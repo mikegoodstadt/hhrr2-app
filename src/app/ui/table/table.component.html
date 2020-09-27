@@ -26,18 +26,19 @@
     </th>
 
     <td mat-cell *matCellDef="let row; let i=index;">
-      <ng-container *ngIf="column != 'id' && column != 'startDate' && column != 'actions'">{{ row[column] }}</ng-container>
+      <ng-container *ngIf="column != 'id' && column != 'startDate' && column != 'department' && column != 'actions'">{{ row[column] }}</ng-container>
       <ng-container *ngIf="column == 'id'">{{ row[column] }}</ng-container>
 
       <ng-container *ngIf="column == 'startDate'">{{ row[column] | date:'dd/MM/yyyy' }}</ng-container>
+      <ng-container *ngIf="column == 'department' && (departments | async) as depts">{{ depts[row[column]] }}</ng-container>
 
-      <button *ngIf="column == 'actions'" mat-icon-button color="primary" (click)="viewRecord(row)" matTooltip="View {{row.name}} {{row.lastname}}">
+      <button *ngIf="column == 'actions' && row.id > 0" mat-icon-button color="primary" (click)="viewRecord(row)" matTooltip="View {{row.name}} {{row.lastname}}">
         <mat-icon aria-label="View Record">pageview</mat-icon>
       </button>
-      <button *ngIf="column == 'actions'" mat-icon-button color="primary" (click)="editRecord(row)" matTooltip="Edit {{row.name}} {{row.lastname}}">
+      <button *ngIf="column == 'actions' && row.id > 0" mat-icon-button color="primary" (click)="editRecord(row)" matTooltip="Edit {{row.name}} {{row.lastname}}">
         <mat-icon aria-label="Edit Record">edit</mat-icon>
       </button>
-      <button *ngIf="column == 'actions'" mat-icon-button color="primary" (click)="deleteRecord(row)" matTooltip="Delete {{row.name}} {{row.lastname}}">
+      <button *ngIf="column == 'actions' && row.id > 0" mat-icon-button color="primary" (click)="deleteRecord(row)" matTooltip="Delete {{row.name}} {{row.lastname}}">
         <mat-icon aria-label="Delete Record">delete</mat-icon>
       </button>
     </td>

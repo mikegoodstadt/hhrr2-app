@@ -4,7 +4,7 @@ export class Employee extends Record {
   lastname: string;
   age: number;
   startDate: Date;
-  department: string;
+  department: number;
 
   constructor() {
     super();
@@ -12,7 +12,7 @@ export class Employee extends Record {
     this.lastname = 'Lastname';
     this.age = 23;
     this.startDate = new Date();
-    this.department = 'IT';
+    this.department = 2;
   }
 
 }

@@ -7,7 +7,8 @@ import { DepartmentService } from '@app/departments/department.service';
 import { AppDateAdapter, APP_DATE_FORMATS } from '@app/shared/format-datepicker';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { Observable, Subscription } from 'rxjs';
- 
+import { SelectOption } from '@app/shared/select-options.interface';
+
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
@@ -21,6 +22,8 @@ export class EditorComponent implements OnInit, OnDestroy {
   public record: any;
   public recordType: string;
   public departments: Observable<string[]>;
+  // public departmentOptions: Observable<SelectOption[]>;
+  public departmentOptions: Observable<Map<number, string>>;
   private subscription = new Subscription();
 
   private settings: any;
@@ -52,7 +55,7 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   private getSettings() {
-    const settingsSubscribed = this.stgsService.getRecord('Profile Settings').subscribe(stgs => {
+    const settingsSubscribed = this.stgsService.getRecord().subscribe(stgs => {
       console.log(stgs);
       console.log(stgs[0]);
       this.settings = stgs[0];
@@ -62,7 +65,8 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   private getDepartments() {
-    this.departments = this.deptService.nameList;
+    // this.departmentOptions = this.deptService.getSelectOptions();
+    this.departmentOptions = this.deptService.getSelectOptionsMap();
   }
 
   /**

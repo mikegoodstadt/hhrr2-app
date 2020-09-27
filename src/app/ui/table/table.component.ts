@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { DepartmentService } from '@app/departments/department.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Record } from '@app/core/record.model'
@@ -19,9 +20,11 @@ export class TableComponent implements OnInit {
   public filterToggle = false;
   public filterDate: any;
   public filterColor = 'secondary';
-
+  public departments: Observable<string[]>;
+  
   constructor(
     private router: Router,
+    private deptService: DepartmentService
   ) {
     this.dataSource = this.records;
     this.edit = new EventEmitter<any>();
@@ -30,6 +33,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource = this.records;
+    this.departments = this.deptService.nameList;
   }
 
   public viewRecord(record: Record) {

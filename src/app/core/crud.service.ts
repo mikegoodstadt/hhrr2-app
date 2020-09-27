@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { map, filter, take } from 'rxjs/operators';
 import { DataService } from './data.service';
 import { Record } from './record.model';
+import { SelectOption } from '@app/shared/select-options.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,17 @@ export abstract class CrudService<T extends Record> {
   
   public get nameList(): Observable<string[]> {
     return this.records.pipe( map(recs => recs.map(rec => rec.name)) );
+  }
+
+  public getSelectOptions(key: string = 'name'): Observable<SelectOption[]> {
+    return this.records.pipe(map(recs => recs.reduce(
+      (opts: SelectOption[], rec) => [...opts, {value: rec.id, viewValue: rec[key]}], [])
+    ));
+  }
+  public getSelectOptionsMap(key: string = 'name'): Observable<Map<number, string>> {
+    return this.records.pipe(map(recs => recs.reduce(
+      (opts: Map<number, string>, rec: T) => opts.set(rec.id, rec[key]), new Map)
+    ));
   }
 
   private newId(): Promise<number> {

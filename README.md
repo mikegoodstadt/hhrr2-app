@@ -41,7 +41,7 @@ Run `npm run dev` which will run the fake REST API [`json-server`](https://githu
 
 Notes:
 -  To avoid conflict with standar Docker port 3000, in `package.json` script `api` the fake REST API `json-server` port (`-p`) is set to 3004.
--  To simulate realtime server response, in `package.json` script `api` the throttling delay (`-d`) is set to 300ms.
+-  To simulate realtime server response, in `package.json` script `api` delay (`-d`) can be set to e.g. 300ms.
 -  To enable relative HTTP paths to also work in the development build, a proxy is configured in `proxy.conf.json` and referenced in `angular.json` "proxyConfig" line 76.
 
 ## Build

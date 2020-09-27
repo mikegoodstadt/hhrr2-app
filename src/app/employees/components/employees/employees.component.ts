@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Department } from '@app/departments/department.model';
 import { Employee } from '@app/employees/employee.model';
 import { Observable, combineLatest, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, reduce } from 'rxjs/operators';
 
 @Component({
   selector: 'app-employees',
@@ -15,8 +15,8 @@ import { map } from 'rxjs/operators';
   styleUrls: ['../../../core/components/records/records.component.scss']
 })
 export class EmployeesComponent extends RecordsComponent {
-  public departments: Observable<Department[]>;
   public records: Observable<Employee[]>;
+  public departments: Observable<Department[]>;
   public deptName = "All";
 
   constructor(
@@ -36,8 +36,18 @@ export class EmployeesComponent extends RecordsComponent {
 
   private setEmployees() {
     const paramId = this.route.snapshot.paramMap.get("id");
-    this.records = this.records.pipe(
-      map( empls => (paramId) ? empls.filter(empl => empl.department.toLowerCase() === paramId) : empls )
+    const deptIds: Observable<number[]> = this.departments.pipe(
+      map(depts => depts.reduce( (arr, dept) => {
+        if (dept.name.toLowerCase() === paramId) arr.push(dept.id)
+        return arr;
+      }, [])
+    ));
+
+    this.records = combineLatest([this.records, deptIds]).pipe(
+      map(([empls, ids]) => {
+        console.log(ids);
+        return (ids.length > 0) ? empls.filter(empl => ids.includes(empl.department)): empls;
+       })
     );
   }
 

@@ -6,9 +6,8 @@
   <h4 class="inactive">ID reference: {{record.id}}</h4>
 
   <form class="mat-dialog-content" [formGroup]="editorForm">
-    <!-- Value: {{ editorForm.value | json }} -->
 
-      <p>
+      <div>
         <mat-form-field color="primary">
           <input matInput #input formControlName="name" placeholder="Name" required >
           <mat-error>
@@ -26,10 +25,10 @@
             </ng-container>
           </mat-error>
         </mat-form-field>
-      </p>
+      </div>
 
-      <p>
-        <mat-form-field color="primary" *ngIf="record.age">
+      <div *ngIf="record.age">
+        <mat-form-field color="primary">
           <input matInput #input formControlName="age" type="number" [min]="ageMin" [max]="ageMax" placeholder="Age" required >
           <mat-hint align="end">Age between {{ageMin}} and {{ageMax}}.</mat-hint>
           <mat-error>
@@ -38,9 +37,9 @@
             </ng-container>
           </mat-error>
         </mat-form-field>
-      </p>
+      </div>
       
-      <p>
+      <span *ngIf="record.startDate">
         <mat-form-field color="primary" *ngIf="record.startDate">
           <input matInput #input formControlName="startDate" [matDatepicker]="picker" [min]="startDateMin" [max]="startDateMax" placeholder="dd/MM/yyyy" required >
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -51,13 +50,15 @@
             </ng-container>
           </mat-error>
         </mat-form-field>
+      </span>
 
+      <span *ngIf="record.department">
         <mat-form-field color="primary" *ngIf="record.department">
           <mat-label>Department</mat-label>
           <mat-select formControlName="department" placeholder="Select Department">
-            <ng-container *ngFor="let dept of (departments | async)">
-              <mat-option [value]="dept">
-                {{dept}}
+            <ng-container *ngFor="let dept of (departmentOptions | async) | keyvalue">
+              <mat-option [value]="dept.key">
+                {{dept.value}}
               </mat-option>
             </ng-container>
           </mat-select>
@@ -67,7 +68,7 @@
             </ng-container>
           </mat-error>
         </mat-form-field>
-      </p>
+      </span>
 
     <div mat-dialog-actions align="end">
       <button mat-button (click)="cancel()" tabindex="-1">Cancel</button>

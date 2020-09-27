@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "api": "json-server -d 300 -p 3004 -w api/db.json -r api/routes.json --nc true",
+    "api": "json-server -p 3004 -w api/db.json -r api/routes.json --nc true",
     "start": "ng serve",
     "dev": "run-p api start",
     "build": "ng build",
