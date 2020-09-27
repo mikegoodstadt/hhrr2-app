@@ -42,12 +42,9 @@ export class EmployeesComponent extends RecordsComponent {
         return arr;
       }, [])
     ));
-
     this.records = combineLatest([this.records, deptIds]).pipe(
-      map(([empls, ids]) => {
-        console.log(ids);
-        return (ids.length > 0) ? empls.filter(empl => ids.includes(empl.department)): empls;
-       })
+      map( ([empls, ids]) =>
+       (ids.length > 0) ? empls.filter(empl => ids.includes(empl.department)): empls )
     );
   }
 

@@ -9,7 +9,7 @@ import { Employee } from './employee.model'
 export class EmployeeService extends CrudService<Employee> {
 
   constructor(
-    public dataService: DataService,
+    public dataService: DataService<Employee>,
   ) {
     super(Employee, dataService);
   }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, filter, take } from 'rxjs/operators';
+import { map, filter, take, first } from 'rxjs/operators';
 import { DataService } from './data.service';
 import { Record } from './record.model';
 import { SelectOption } from '@app/shared/select-options.interface';
@@ -14,7 +14,7 @@ export abstract class CrudService<T extends Record> {
 
   constructor(
     ctor: { new(): T },
-    public dataService: DataService,
+    public dataService: DataService<T>,
     ) {
     this.ctor = ctor;
     this.recordType = ctor.name;
@@ -29,7 +29,7 @@ export abstract class CrudService<T extends Record> {
   }
 
   public add(record: T): boolean {
-    this.dataService.add(this.recordType, record).subscribe(res => console.log(res));;
+    this.dataService.add(this.recordType, record).subscribe();
     return true;
   }
 
@@ -42,11 +42,9 @@ export abstract class CrudService<T extends Record> {
     return this.dataService.records(this.recordType);
   }
 
-  public getRecord(ref: number | string = 1): Observable<T[]> {
+  public getRecord(ref: number | string = 1): Observable<T> {
     let type = (typeof(ref) === 'string') ? 'name' : 'id';
-    return this.dataService.records(this.recordType).pipe(
-      map(recs => recs.filter(rec => rec[type] === ref)[0])
-    );
+    return this.records.pipe( map(recs => recs.find(rec => (rec[type] === ref)) ));
   }
 
   public get idList(): Observable<number[]> {
@@ -57,12 +55,7 @@ export abstract class CrudService<T extends Record> {
     return this.records.pipe( map(recs => recs.map(rec => rec.name)) );
   }
 
-  public getSelectOptions(key: string = 'name'): Observable<SelectOption[]> {
-    return this.records.pipe(map(recs => recs.reduce(
-      (opts: SelectOption[], rec) => [...opts, {value: rec.id, viewValue: rec[key]}], [])
-    ));
-  }
-  public getSelectOptionsMap(key: string = 'name'): Observable<Map<number, string>> {
+  public getSelectOptions(key: string = 'name'): Observable<Map<number, string>> {
     return this.records.pipe(map(recs => recs.reduce(
       (opts: Map<number, string>, rec: T) => opts.set(rec.id, rec[key]), new Map)
     ));
@@ -70,21 +63,20 @@ export abstract class CrudService<T extends Record> {
 
   private newId(): Promise<number> {
     return this.idList.pipe(
-      map(ids => ids.reduce((a, b) => ((a >= b) ? a : b), 0) ),
-      map(id => id + 1),
-      take(1)
+      map(ids => ids.reduce((largest, test) => ((test >= largest) ? test : largest), 0) ),
+      map(id => id + 1)
     ).toPromise();
   }
 
   // UPDATE
   public update(record: T): boolean {
-    this.dataService.update(this.recordType, record).subscribe(res => console.log(res));;
+    this.dataService.update(this.recordType, record).subscribe();
     return true;
   }
 
   // DELETE
   public delete(record: T): boolean {
-    this.dataService.delete(this.recordType, record.id).subscribe(res => console.log(res));
+    this.dataService.delete(this.recordType, record.id).subscribe();
     return true;
   }
 

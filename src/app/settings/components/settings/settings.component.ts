@@ -9,7 +9,7 @@ import { Setting } from '@app/settings/settings.model';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-  public settings: Observable<Setting[]>;
+  public settings: Observable<Setting>;
 
   constructor(
     public stgsService: SettingsService,

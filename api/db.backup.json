@@ -1,6 +1,8 @@
 {
   "settings": [
     {
+      "id": 1,
+      "name": "Profile Settings",
       "ageMin": 16,
       "ageMax": 65
     }

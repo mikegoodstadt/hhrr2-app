@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { map, catchError, retry } from 'rxjs/operators';
+import { Record } from './record.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -12,21 +13,24 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class DataService<T extends Record> {
 
   constructor(
     private http: HttpClient,
   ) { }
 
-  public records(type: string): Observable<any> {
+  public records(type: string): Observable<T[]> {
     const url = '/api/' + type.toLowerCase() + 's';
-    return this.http.get(url).pipe(
-      map(res => {
-        let date = res['startDate']
-        if (date) date = new Date(date);
-        return res;
-      })
-    );
+    return this.http.get<T[]>(url).pipe(
+      map(res => res.map(rec => {
+        if (type === 'Employee') {
+          let date = rec['startDate']
+          rec['startDate'] = new Date(date);
+        };
+        return rec;
+      }),
+      catchError(this.handleError<T[]>(type, 'records'))
+    ));
   }
 
   public record(type: string, id: number): Observable<any> {
@@ -36,12 +40,12 @@ export class DataService {
         let date = res['startDate']
         if (date) date = new Date(date);
         return res;
-      })
+      }),
+      catchError(this.handleError<any[]>(type, 'record'))
     );
   }
 
   public add(type: string, record: any) {
-    console.log('adding');
     const url = '/api/' + type.toLowerCase() + 's';
     return this.http.post(url, JSON.stringify(record), httpOptions).pipe(
       // retry(1),
@@ -50,7 +54,6 @@ export class DataService {
   }
 
   public update(type: string, record: any) {
-    console.log('updating');
     const url = '/api/' + type.toLowerCase() + 's' + '/' + record.id;
     return this.http.put(url, JSON.stringify(record), httpOptions).pipe(
       // retry(1),
@@ -60,7 +63,6 @@ export class DataService {
 
   public delete(type: string, id: number) {
     const url = '/api/' + type.toLowerCase() + 's' + '/' + id;
-    console.log('data deleting...', url);
     return this.http.delete(url, httpOptions).pipe(
       // retry(1),
       catchError(this.handleError<any[]>(type, 'delete'))

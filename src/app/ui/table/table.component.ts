@@ -36,35 +36,37 @@ export class TableComponent implements OnInit {
     this.departments = this.deptService.nameList;
   }
 
-  public viewRecord(record: Record) {
-    let path = this.recordType.toLowerCase();
-    const id = (path === 'department') ? record.name.toLowerCase() : record.id.toString();
-    this.router.navigate([path, id])
+  public viewRecord(record: Record = null): void {
+    if (record) {
+      let path = this.recordType.toLowerCase();
+      const id = (path === 'department') ? record.name.toLowerCase() : record.id.toString();
+      this.router.navigate([path, id])
+    }
   }
 
-  public editRecord(record: Record) {
+  public editRecord(record: Record = null): void {
     this.edit.emit(record);
   }
   
-  public deleteRecord(record: Record): void {
-    this.delete.emit(record);
+  public deleteRecord(record: Record = null): void {
+    if (record) {
+      this.delete.emit(record);
+    }
   }
 
-  public toggleFilter() {
+  public toggleFilter(): void {
     this.filterToggle = !this.filterToggle;
   }
   
-  public filterDates(event: Event) {
+  public filterDates(event: Event): void {
     this.filterColor = 'warn';
     const checkDate = new Date((event.target as HTMLInputElement).value).getTime();
     this.dataSource = this.records.pipe(
-      map(arr => arr.filter(rec => {
-        return rec['startDate'].getTime() >= checkDate;
-      }))
+      map(arr => arr.filter(rec => rec['startDate'].getTime() >= checkDate ))
     );
   };
 
-  public clearFilter(event: Event) {
+  public clearFilter(event: Event): void {
     event.stopPropagation();
     this.filterDate = null;
     this.dataSource = this.records;

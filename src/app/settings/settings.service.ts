@@ -9,7 +9,7 @@ import { Setting } from './settings.model'
 export class SettingsService extends CrudService<Setting> {
 
   constructor(
-    public dataService: DataService,
+    public dataService: DataService<Setting>,
   ) {
     super(Setting, dataService);
   }

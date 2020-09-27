@@ -22,7 +22,6 @@ export class EditorComponent implements OnInit, OnDestroy {
   public record: any;
   public recordType: string;
   public departments: Observable<string[]>;
-  // public departmentOptions: Observable<SelectOption[]>;
   public departmentOptions: Observable<Map<number, string>>;
   private subscription = new Subscription();
 
@@ -55,18 +54,12 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   private getSettings() {
-    const settingsSubscribed = this.stgsService.getRecord().subscribe(stgs => {
-      console.log(stgs);
-      console.log(stgs[0]);
-      this.settings = stgs[0];
-      console.log(this.settings);
-    });
+    const settingsSubscribed = this.stgsService.getRecord().subscribe(stgs => this.settings = stgs );
     this.subscription.add(settingsSubscribed);
   }
 
   private getDepartments() {
-    // this.departmentOptions = this.deptService.getSelectOptions();
-    this.departmentOptions = this.deptService.getSelectOptionsMap();
+    this.departmentOptions = this.deptService.getSelectOptions();
   }
 
   /**

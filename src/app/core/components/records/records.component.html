@@ -1,7 +1,7 @@
-<ng-container *ngIf="(records | async) as recds; else loading">
+<ng-container *ngIf="(records | async); else loading">
   <h2>{{ recordsTitle }}</h2>
   <app-table
-    [records]="recds"
+    [records]="records"
     [recordType]="recordType"
     [displayedColumns]="displayedColumns"
     (edit)="edit($event)"
