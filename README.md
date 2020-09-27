@@ -37,7 +37,12 @@ docker run -p 3000:80 mikegoodstadt/hhrr2-app
 
 ## Development server
 
-Run `npm run dev` for a dev server. This will run the `json-server` on `http://localhost:4200/` and `ng s` in parallel. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run dev` which will run the fake REST API [`json-server`](https://github.com/typicode/json-server) and `ng serve` in parallel.
+
+Notes:
+-  To avoid conflict with standar Docker port 3000, in `package.json` script `api` the fake REST API `json-server` port (`-p`) is set to 3004.
+-  To simulate realtime server response, in `package.json` script `api` the throttling delay (`-d`) is set to 300ms.
+-  To enable relative HTTP paths to also work in the development build, a proxy is configured in `proxy.conf.json` and referenced in `angular.json` "proxyConfig" line 76.
 
 ## Build
 

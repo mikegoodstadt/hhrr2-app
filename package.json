@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "api": "json-server api/db.json --routes api/routes.json --no-cors=true",
+    "api": "json-server -d 300 -p 3004 -w api/db.json -r api/routes.json --nc true",
     "start": "ng serve",
     "dev": "run-p api start",
     "build": "ng build",
@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~10.1.2",
     "@angular/router": "~10.1.2",
     "json-server": "^0.16.1",
+    "material-icons-font": "^2.1.0",
     "normalize.css": "^8.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

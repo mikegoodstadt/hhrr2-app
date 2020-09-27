@@ -1,4 +1,10 @@
 {
+  "settings": [
+    {
+      "ageMin": 16,
+      "ageMax": 65
+    }
+  ],
   "departments": [
     {
       "id": 1,

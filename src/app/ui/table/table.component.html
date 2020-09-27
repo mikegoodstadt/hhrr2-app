@@ -19,9 +19,8 @@
       </ng-container>
 
       <ng-container *ngIf="column == 'actions'" fxFlex="40px">
-        <button mat-button color="primary" (click)="editRecord()">
-          New {{ recordType }}
-          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+        <button mat-button color="primary" (click)="editRecord()" class="new-button">
+          <mat-icon aria-label="New Record">add_box</mat-icon> New {{ recordType }}
         </button>
       </ng-container>
     </th>
@@ -33,13 +32,13 @@
       <ng-container *ngIf="column == 'startDate'">{{ row[column] | date:'dd/MM/yyyy' }}</ng-container>
 
       <button *ngIf="column == 'actions'" mat-icon-button color="primary" (click)="viewRecord(row)" matTooltip="View {{row.name}} {{row.lastname}}">
-        <mat-icon aria-label="View">pageview</mat-icon>
+        <mat-icon aria-label="View Record">pageview</mat-icon>
       </button>
       <button *ngIf="column == 'actions'" mat-icon-button color="primary" (click)="editRecord(row)" matTooltip="Edit {{row.name}} {{row.lastname}}">
-        <mat-icon aria-label="Edit">edit</mat-icon>
+        <mat-icon aria-label="Edit Record">edit</mat-icon>
       </button>
       <button *ngIf="column == 'actions'" mat-icon-button color="primary" (click)="deleteRecord(row)" matTooltip="Delete {{row.name}} {{row.lastname}}">
-        <mat-icon aria-label="Delete">delete</mat-icon>
+        <mat-icon aria-label="Delete Record">delete</mat-icon>
       </button>
     </td>
   </ng-container>

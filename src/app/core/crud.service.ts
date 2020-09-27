@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, filter, take } from 'rxjs/operators';
 import { DataService } from './data.service';
 import { Record } from './record.model';
 
@@ -41,10 +41,11 @@ export abstract class CrudService<T extends Record> {
     return this.dataService.records(this.recordType);
   }
 
-  public getRecords(): T[] {
-    let records: T[];
-    this.dataService.records(this.recordType).subscribe(recs => records = recs);
-    return records;
+  public getRecord(ref: number | string = 1): Observable<T[]> {
+    let type = (typeof(ref) === 'string') ? 'name' : 'id';
+    return this.dataService.records(this.recordType).pipe(
+      map(recs => recs.filter(rec => rec[type] === ref)[0])
+    );
   }
 
   public get idList(): Observable<number[]> {

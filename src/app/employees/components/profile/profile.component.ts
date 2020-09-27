@@ -27,7 +27,6 @@ export class ProfileComponent implements OnInit {
 
   private getEmployee() {
     const paramId: number = parseInt(this.route.snapshot.paramMap.get("id"));
-    console.log(paramId);
     this.employee = this.emplService.records.pipe(
       map( arr => arr.find(rec => rec.id === paramId ) )
     )

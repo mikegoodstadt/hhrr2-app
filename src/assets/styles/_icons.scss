@@ -1,0 +1,19 @@
+/**
+ * Material design icons font
+ * https://github.com/daimoonis/material-icons-font
+ * Based on Material design icons font to simplify process
+ * of building new Angular typescript application to serve
+ * icons font definition from vendor package (e.g. npm node_modules),
+ * without the need to insert direct link to online google fonts
+ * in html head section manually.
+ */
+
+@import '~material-icons-font/sass/variables'; // mandatory and at first place
+@import '~material-icons-font/sass/mixins'; // mandatory and after variables
+// there you can change default variables if they are not good enough for you
+$MaterialIcons_FontPath: "~material-icons-font/fonts"; // for CLI project we change font path to point into package fonts folder
+@import '~material-icons-font/sass/main'; // mandatory main material font definition
+@import '~material-icons-font/sass/Regular'; // mandatory @font-face definition
+
+@import '~material-icons-font/sass/sizing'; // optional rules for icons sizing recommended by font designers
+@import '~material-icons-font/sass/coloring'; // optional rules for icons color rules with light and dark background and inactive state

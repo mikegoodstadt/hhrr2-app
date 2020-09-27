@@ -1,9 +1,7 @@
-import { Injectable, InjectionToken } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CrudService } from '@app/core/crud.service';
 import { DataService } from '@app/core/data.service';
 import { Employee } from './employee.model'
-
-export const EMPLOYEES = new InjectionToken<string>('EmployeeService');
 
 @Injectable({
   providedIn: 'root'

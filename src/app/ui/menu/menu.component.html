@@ -5,7 +5,7 @@
       <ng-container *ngIf="item.route">
         <a routerLink="{{item.route}}" routerLinkActive="active-link" title="{{item.title}}">
         <ng-container *ngIf="item.icon; then icon; else title">icon</ng-container>
-        <ng-template #icon><mat-icon aria-hidden="false" aria-label="icon">{{item.icon}}</mat-icon></ng-template>
+        <ng-template #icon><mat-icon aria-hidden="false" aria-label="icon" class="md-18">{{item.icon}}</mat-icon></ng-template>
         <ng-template #title>{{item.title}}</ng-template>
       </a></ng-container>
     </li>

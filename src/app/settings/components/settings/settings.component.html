@@ -1,0 +1,9 @@
+<h1>Settings</h1>
+<ng-container *ngIf="(settings | async) as stgs; else loading">
+  <table>
+    <tr *ngFor="let stg of stgs | keyvalue">
+      <td>{{ stg.key }}:</td><td>{{ stg.value }}</td>
+    </tr>
+  </table>
+</ng-container>
+<ng-template #loading>loading...<app-spinner class="spinner"></app-spinner></ng-template>

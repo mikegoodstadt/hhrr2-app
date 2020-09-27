@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SettingsComponent } from '@app/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -21,13 +20,8 @@ const routes: Routes = [
   },
   {
     path: 'settings',
-    component: SettingsComponent,
-    data: {
-      breadcrumb: 'Settings',
-    },
-    // canActivate: [AuthGuard]
-  },
-  {
+    loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule)
+  },  {
     path: '',
     pathMatch: 'full',
     redirectTo: '/employees'

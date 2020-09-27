@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SettingsService } from '@app/settings/settings.service';
 import { DepartmentService } from '@app/departments/department.service';
 import { AppDateAdapter, APP_DATE_FORMATS } from '@app/shared/format-datepicker';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
  
 @Component({
   selector: 'app-editor',
@@ -16,13 +17,15 @@ import { Observable } from 'rxjs';
     {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS}
  ],
 })
-export class EditorComponent implements OnInit {
+export class EditorComponent implements OnInit, OnDestroy {
   public record: any;
   public recordType: string;
   public departments: Observable<string[]>;
+  private subscription = new Subscription();
 
-  public ageMin: number = 18;
-  public ageMax: number = 65;
+  private settings: any;
+  private ageMin: number = 16;
+  private ageMax: number = 65;
   public startDateMin: Date;
   public startDateMax: Date;
   public errorMessages = {};
@@ -30,6 +33,7 @@ export class EditorComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<EditorComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    public stgsService: SettingsService,
     public deptService: DepartmentService,
     private fb: FormBuilder,
     private datePipe: DatePipe,
@@ -41,19 +45,39 @@ export class EditorComponent implements OnInit {
   public editorForm: FormGroup;
     
   ngOnInit(): void {
+    this.getSettings();
     this.getDepartments();
     this.setErrorMessages();
     this.generateForm();
+  }
+
+  private getSettings() {
+    const settingsSubscribed = this.stgsService.getRecord('Profile Settings').subscribe(stgs => {
+      console.log(stgs);
+      console.log(stgs[0]);
+      this.settings = stgs[0];
+      console.log(this.settings);
+    });
+    this.subscription.add(settingsSubscribed);
   }
 
   private getDepartments() {
     this.departments = this.deptService.nameList;
   }
 
+  /**
+   * Error Messages
+   * @prop required Required field
+   * @prop minLength Minimum working age from Settings
+   * @prop min Minimum working age from Settings
+   * @prop max Minimum working age from Settings
+   * @prop startDateMin Date limited by retirement age
+   * @prop startDateMax Increase date upto 1 month ahead
+   */
   private setErrorMessages() {
     const currentDate = new Date();
-    this.startDateMin = new Date(currentDate.getFullYear() - this.ageMax, currentDate.getMonth(), currentDate.getDay()); // startDate limited by retirement age
-    this.startDateMax = new Date(currentDate.setMonth(currentDate.getMonth() + 1 )); // add date upto 1 month ahead
+    this.startDateMin = new Date(currentDate.getFullYear() - this.ageMax, currentDate.getMonth(), currentDate.getDay());
+    this.startDateMax = new Date(currentDate.setMonth(currentDate.getMonth() + 1 ));
     this.errorMessages = {
       required: 'Please fill in field.',
       minlength: 'Requires a minimum of 2 characters',
@@ -140,4 +164,7 @@ export class EditorComponent implements OnInit {
     return control.errors ? Object.keys(control.errors) : [];
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
