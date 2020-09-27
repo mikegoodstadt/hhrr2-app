@@ -48,28 +48,27 @@ export class RecordsComponent implements OnInit {
   }
   
   public async edit(record: Record) {
-    let mode = 'Edit';
-    if (!record) {
-      mode = 'New';
-      record = await this.recordService.new();
-    }
+    let mode = (record) ? 'Edit' : 'New';
     let header = `${mode} ${this.recordType}`;
-    const dialogRef = this.dialog.open(EditorComponent, {
-      data: {
-        header: header,
-        record: record,
-        recordType: this.recordType
-      }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        if (mode === 'New') {
-          this.recordService.add(result);
-        } else {
-          this.recordService.update(result);
-        }  
-        this.records = this.recordService.records;
-      }
+    this.recordService.new().then(rec => {
+      record = record || rec;
+      const dialogRef = this.dialog.open(EditorComponent, {
+        data: {
+          header: header,
+          record: record,
+          recordType: this.recordType
+        }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          if (mode === 'New') {
+            this.recordService.add(result);
+          } else {
+            this.recordService.update(result);
+          }  
+          this.records = this.recordService.records;
+        }
+      });
     });
   }
   
