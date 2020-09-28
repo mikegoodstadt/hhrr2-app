@@ -3,11 +3,10 @@ import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SettingsService } from '@app/settings/settings.service';
-import { DepartmentService } from '@app/departments/department.service';
+import { DepartmentsService } from '@app/departments/departments.service';
 import { AppDateAdapter, APP_DATE_FORMATS } from '@app/shared/format-datepicker';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { Observable, Subscription } from 'rxjs';
-import { SelectOption } from '@app/shared/select-options.interface';
 
 @Component({
   selector: 'app-editor',
@@ -36,7 +35,7 @@ export class EditorComponent implements OnInit, OnDestroy {
     public dialogRef: MatDialogRef<EditorComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public stgsService: SettingsService,
-    public deptService: DepartmentService,
+    public deptService: DepartmentsService,
     private fb: FormBuilder,
     private datePipe: DatePipe,
     ) {

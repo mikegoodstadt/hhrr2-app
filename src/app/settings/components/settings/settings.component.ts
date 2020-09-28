@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsService } from '@app/settings/settings.service';
 import { Observable } from 'rxjs';
-import { Setting } from '@app/settings/settings.model';
+import { Setting } from '@app/settings/setting.model';
 
 @Component({
   selector: 'app-settings',

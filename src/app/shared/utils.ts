@@ -13,7 +13,8 @@ export class Utils {
 
   /**
    * Reorder date by Endianness
-   * or just use: new Intl.DateTimeFormat('es-ES').format(date)
+   * NOT USED - CURRENTLY USING: new Intl.DateTimeFormat('es-ES').format(date)
+   * 
    * @param date Date value to be converted
    * @param end  Ordering as big-, middle- or little-endian.
    * @param sep  Charater between ordered values.
@@ -31,7 +32,9 @@ export class Utils {
   }
 
   /**
-   * Generate a random number between two values.
+   * Generate Random number between max and twovalues.
+   * NOT USED - CURRENTLY USING: max id in service + 1
+   *
    * @param min lower bound inclusive
    * @param max upper bound inclusive
    * @returns Returns a random number between min and max.

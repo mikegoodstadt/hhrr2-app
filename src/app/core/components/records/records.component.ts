@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CrudService } from '@app/core/crud.service';
+import { RecordsService } from '@app/core/records.service';
 import { EditorComponent } from '@app/ui/editor/editor.component';
 import { DialogComponent } from '@app/ui/dialog/dialog.component';
 import { Record } from '@app/core/record.model';
@@ -21,7 +21,7 @@ export class RecordsComponent implements OnInit {
   public originalOrder = Utils.originalOrder;
 
   constructor(
-    public recordService: CrudService<Record>,
+    public recordService: RecordsService<Record>,
     public dialog: MatDialog
   ) {
     this.records = this.recordService.records;

@@ -9,7 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 The target user environmet is desktop with a modern browser (i.e. not IE11). The app default page is the record Admin for Employees. New/Edit opens a dialog rather than moving to a separate view so as to maintain user task-focus, however for larger forms or tasks, this can be easily passed to a fullscreen view. A basic Settings view is also supplied to manage global settings such as minimum and maximum age limits if required.
 
 ### Project Structure
-The DataService fetches data and an abstract CrudService provides the restuling Observables. This is extended by DepartmentService and EmployeeService which are injected into a generic RecordsComponent view as managed by the AppRoutingModule. Routing provides lazy-loaded Departments and Employees Modules which present the records in tables within their views.
+The DataService fetches data and an abstract RecordsService provides the restuling Observables. This is extended by DepartmentsService and EmployeesService which are injected into a generic RecordsComponent view as managed by the AppRoutingModule. Routing provides lazy-loaded Departments and Employees Modules which present the records in tables within their views.
 
 Individual Department and Employee Profiles views are avaible by clicking on the view icon in the right-hand Actions column. In the header of this column is a button to add new records. Filtering by date can be performed by clicking the filter icon next to the column header and selecting a date.
 

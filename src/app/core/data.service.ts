@@ -19,6 +19,10 @@ export class DataService<T extends Record> {
     private http: HttpClient,
   ) { }
 
+  /**
+   * Fetch distinct record collections from data source.
+   * @param type Record type
+   */
   public records(type: string): Observable<T[]> {
     const url = '/api/' + type.toLowerCase() + 's';
     return this.http.get<T[]>(url).pipe(
@@ -33,18 +37,28 @@ export class DataService<T extends Record> {
     ));
   }
 
-  public record(type: string, id: number): Observable<any> {
+  /**
+   * Fetch single record from data source.
+   * @param type Record type
+   * @param id Record reference id
+   */
+  public record(type: string, id: number): Observable<T> {
     const url = '/api/' + type.toLowerCase() + 's' + '/' + id;
-    return this.http.get(url).pipe(
+    return this.http.get<T>(url).pipe(
       map(res => {
         let date = res['startDate']
         if (date) date = new Date(date);
         return res;
       }),
-      catchError(this.handleError<any[]>(type, 'record'))
+      catchError(this.handleError<T>(type, 'record'))
     );
   }
 
+  /**
+   * POST new record to data source.
+   * @param type Record type
+   * @param record complete Record
+   */
   public add(type: string, record: any) {
     const url = '/api/' + type.toLowerCase() + 's';
     return this.http.post(url, JSON.stringify(record), httpOptions).pipe(
@@ -53,6 +67,11 @@ export class DataService<T extends Record> {
     );
   }
 
+  /**
+   * PUT updated record to data source.
+   * @param type Record type
+   * @param record complete Record
+   */
   public update(type: string, record: any) {
     const url = '/api/' + type.toLowerCase() + 's' + '/' + record.id;
     return this.http.put(url, JSON.stringify(record), httpOptions).pipe(
@@ -61,6 +80,11 @@ export class DataService<T extends Record> {
     );
   }
 
+  /**
+   * DELETE record to data source.
+   * @param type Record type
+   * @param id Record id
+   */
   public delete(type: string, id: number) {
     const url = '/api/' + type.toLowerCase() + 's' + '/' + id;
     return this.http.delete(url, httpOptions).pipe(

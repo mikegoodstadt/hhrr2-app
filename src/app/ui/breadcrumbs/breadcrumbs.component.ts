@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, Event } from '@angular/router';
-import { filter, map, distinctUntilChanged } from 'rxjs/operators';
+import { filter, distinctUntilChanged } from 'rxjs/operators';
 import { IBreadCrumb } from './breadcrumb.interface';
 
 @Component({
@@ -29,6 +29,7 @@ export class BreadcrumbsComponent implements OnInit {
 
   // https://dev.to/zhiyueyi/create-a-simple-breadcrumb-in-angular-ag5
   /**
+   * @todo Adapt further for app requirements
    * Recursively build breadcrumb according to activated route.
    * @param route
    * @param url
@@ -50,7 +51,7 @@ export class BreadcrumbsComponent implements OnInit {
 
     //In the routeConfig the complete path is not available,
     //so we rebuild it each time
-    const nextUrl = path ? `${url}/${path}` : url;
+    const nextUrl = (path) ? `${url}/${path}` : url;
     
     const breadcrumb: IBreadCrumb = {
       label: label,
@@ -58,7 +59,7 @@ export class BreadcrumbsComponent implements OnInit {
     };
     // console.log('breadcrumb', breadcrumb);
     // Only adding route with non-empty label
-    const newBreadcrumbs = breadcrumb.label ? [ ...breadcrumbs, breadcrumb ] : [ ...breadcrumbs];
+    const newBreadcrumbs = (breadcrumb.label) ? [ ...breadcrumbs, breadcrumb ] : [ ...breadcrumbs];
     if (route.firstChild) {
         //If we are not on our current path yet,
         //there will be more children to look after, to build our breadcumb

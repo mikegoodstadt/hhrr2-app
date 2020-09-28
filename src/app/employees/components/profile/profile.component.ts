@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EmployeeService } from '@app/employees/employee.service';
+import { EmployeesService } from '@app/employees/employees.service';
 import { Employee } from '@app/employees/employee.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    public emplService: EmployeeService,
+    public emplService: EmployeesService,
   ) {
   }
 
@@ -25,11 +25,12 @@ export class ProfileComponent implements OnInit {
     this.getEmployee();
   }
 
+  /**
+   * Get single employee from route.
+   */
   private getEmployee() {
     const paramId: number = parseInt(this.route.snapshot.paramMap.get("id"));
-    this.employee = this.emplService.records.pipe(
-      map( arr => arr.find(rec => rec.id === paramId ) )
-    )
+    this.employee = this.emplService.getRecord(paramId);
   }
 
 }
