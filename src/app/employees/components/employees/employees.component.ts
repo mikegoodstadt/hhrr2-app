@@ -17,7 +17,7 @@ import { map } from 'rxjs/operators';
 export class EmployeesComponent extends RecordsComponent {
   public records: Observable<Employee[]>;
   public departments: Observable<Department[]>;
-  public deptName = "All";
+  public deptName: string = 'All ';
 
   constructor(
     public emplService: EmployeesService,
@@ -39,6 +39,7 @@ export class EmployeesComponent extends RecordsComponent {
    */
   private setEmployees() {
     const paramId: string = this.route.snapshot.paramMap.get("id");
+    this.deptName = (paramId) ? paramId + ' ' : 'All ' ;
     const deptIds: Observable<number[]> = this.deptService.getIdList(paramId);
     this.records = combineLatest([this.records, deptIds]).pipe(
       map( ([empls, ids]) =>

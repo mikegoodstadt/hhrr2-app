@@ -1,5 +1,5 @@
 <ng-container *ngIf="(records | async); else loading">
-  <h2>{{ recordsTitle }}</h2>
+  <h2>{{deptName | uppercase}} {{recordsTitle}}</h2>
   <app-table
     [records]="records"
     [recordType]="recordType"
