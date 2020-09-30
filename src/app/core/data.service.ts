@@ -27,12 +27,11 @@ private apiExt = environment.apiExt;
    * @param type Record type
    */
   public records(type: string): Observable<T[]> {
-    type = type.toLowerCase() + 's';
+    type = this.getType(type);
     const url = `${this.apiUrl}/${type}${this.apiExt}`;
-    console.log(url);
     return this.http.get<T[]>(url).pipe(
       map(res => res.map(rec => {
-        if (type === 'Employee') {
+        if (rec['startDate']) {
           let date = rec['startDate']
           rec['startDate'] = new Date(date);
         };
@@ -48,14 +47,15 @@ private apiExt = environment.apiExt;
    * @param id Record reference id
    */
   public record(type: string, record: any): Observable<T> {
-    type = type.toLowerCase() + 's';
+    type = this.getType(type);
     const url = `${this.apiUrl}/${type}/${record.id}${this.apiExt}`;
-    console.log(url);
     return this.http.get<T>(url).pipe(
-      map(res => {
-        let date = res['startDate']
-        if (date) date = new Date(date);
-        return res;
+      map(rec => {
+        if (rec['startDate']) {
+          let date = rec['startDate']
+          if (date) date = new Date(date);
+        };
+        return rec;
       }),
       catchError(this.handleError<T>(type, 'record'))
     );
@@ -67,9 +67,8 @@ private apiExt = environment.apiExt;
    * @param record complete Record
    */
   public add(type: string, record: any) {
-    type = type.toLowerCase() + 's';
+    type = this.getType(type);
     const url = `${this.apiUrl}/${type}${this.apiExt}`;
-    console.log(url);
     return this.http.post(url, JSON.stringify(record), httpOptions).pipe(
       // retry(1),
       catchError(this.handleError<any[]>(type, 'add'))
@@ -82,9 +81,8 @@ private apiExt = environment.apiExt;
    * @param record complete Record
    */
   public update(type: string, record: any) {
-    type = type.toLowerCase() + 's';
+    type = this.getType(type);
     const url = `${this.apiUrl}/${type}/${record.id}${this.apiExt}`;
-    console.log(url);
     return this.http.put(url, JSON.stringify(record), httpOptions).pipe(
       // retry(1),
       catchError(this.handleError<any[]>(type, 'update'))
@@ -97,9 +95,8 @@ private apiExt = environment.apiExt;
    * @param id Record id
    */
   public delete(type: string, record: any) {
-    type = type.toLowerCase() + 's';
+    type = this.getType(type);
     const url = `${this.apiUrl}/${type}/${record.id}${this.apiExt}`;
-    console.log(url);
     return this.http.delete(url, httpOptions).pipe(
       // retry(1),
       catchError(this.handleError<any[]>(type, 'delete'))
@@ -124,4 +121,8 @@ private apiExt = environment.apiExt;
     };
   }
   
+  private getType(type: string): string {
+    return type + 's';
+  }
+
 }

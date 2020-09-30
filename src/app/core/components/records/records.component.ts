@@ -25,7 +25,7 @@ export class RecordsComponent implements OnInit {
     public dialog: MatDialog
   ) {
     this.records = this.recordService.records;
-    this.recordType = this.recordService.recordType;
+    this.recordType = this.recordService.model.recordType;
     this.recordsTitle = this.recordType + 's';
   }
 

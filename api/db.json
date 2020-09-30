@@ -39,7 +39,7 @@
       "name": "Victor",
       "lastname": "Devlead",
       "age": 64,
-      "startDate": "2014-06-09",
+      "startDate": "2014-06-09T09:00:00.000Z",
       "department": 2
     },
     {
@@ -47,15 +47,15 @@
       "name": "Mike",
       "lastname": "Frontend",
       "age": 33,
-      "startDate": "2019-01-01",
+      "startDate": "2019-01-01T09:00:00.000Z",
       "department": 2
     },
     {
       "id": 10004,
       "name": "Billie",
       "lastname": "Chatbot",
-      "age": 21,
-      "startDate": "2020-09-01T22:00:00.000Z",
+      "age": 20,
+      "startDate": "2020-09-01",
       "department": 3
     }
   ]

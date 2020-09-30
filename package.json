@@ -6,7 +6,7 @@
     "start": "ng serve",
     "dev-api": "json-server -c api/config.json api/db.json",
     "dev": "run-p dev-api start",
-    "build": "ng build --prod",
+    "build": "env NG_BUILD_MANGLE=false ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

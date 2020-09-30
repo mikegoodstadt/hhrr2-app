@@ -39,7 +39,7 @@ export class EditorComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private datePipe: DatePipe,
     ) {
-      this.record = this.data.record;
+      this.record = data.record;
       this.recordType = data.recordType;
     }
     
@@ -85,7 +85,7 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   private generateForm() {
-    if (this.recordType === 'Employee') {
+    if (this.record['lastname'] && this.record['age'] && this.record['startDate'] && this.record['department']) {
       this.editorForm = this.fb.group({
         id: [
           this.record.id,

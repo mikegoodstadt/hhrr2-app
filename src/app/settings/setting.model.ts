@@ -6,6 +6,8 @@ export class Setting extends Record {
 
   constructor() {
     super();
+    this.recordType = 'setting';
+    this.name = 'Default Settings';
     this.ageMin = 16;
     this.ageMax = 65;
   }

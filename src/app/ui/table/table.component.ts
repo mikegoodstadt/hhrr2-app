@@ -44,9 +44,9 @@ export class TableComponent implements OnInit {
    */
   public viewRecord(record: Record = null): void {
     if (record) {
-      let path = this.recordType.toLowerCase();
-      const id = (path === 'department') ? record.name.toLowerCase() : record.id.toString();
-      this.router.navigate([path, id])
+      let path = this.recordType;
+      const param: string = (path === 'department') ? record.name.toLowerCase() : record.id.toString();
+      this.router.navigate([path, param])
     }
   }
   
@@ -75,7 +75,10 @@ export class TableComponent implements OnInit {
     const checkDate = new Date((event.target as HTMLInputElement).value).getTime();
     /** Filter for Dates greater/equal to picked Date */
     this.dataSource = this.records.pipe(
-      map(arr => arr.filter(rec => rec['startDate'].getTime() >= checkDate ))
+      map(arr => arr.filter(rec => {
+        console.log(rec);
+        return rec['startDate'].getTime() >= checkDate;
+      }))
     );
   };
 

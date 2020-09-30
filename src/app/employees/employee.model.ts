@@ -8,8 +8,9 @@ export class Employee extends Record {
 
   constructor() {
     super();
-    this.name = 'Name';
-    this.lastname = 'Lastname';
+    this.recordType = 'employee';
+    this.name = 'Default Name';
+    this.lastname = 'Default Lastname';
     this.age = 23;
     this.startDate = new Date();
     this.department = 2;

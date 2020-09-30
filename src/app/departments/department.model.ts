@@ -4,7 +4,8 @@ export class Department extends Record {
 
   constructor() {
     super();
-    this.name = 'Default Title';
+    this.recordType = 'department';
+    this.name = 'Default Department';
   }
 
 }
