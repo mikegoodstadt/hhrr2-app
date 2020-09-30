@@ -1,0 +1,6 @@
+{
+  "port": 3004,
+  "watch": true,
+  "routes": "api/routes.json",
+  "no-cors": true
+}

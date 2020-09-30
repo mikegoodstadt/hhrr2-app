@@ -44,9 +44,20 @@ Notes:
 -  To simulate realtime server response, in `package.json` script `api` delay (`-d`) can be set to e.g. 300ms.
 -  To enable relative HTTP paths to also work in the development build, a proxy is configured in `proxy.conf.json` and referenced in `angular.json` "proxyConfig" line 76.
 
-## Build
+## Build and Deploy to Firebase
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Production builds can be served using Firebase following the instructions on their website:
+```
+npm i -g firebase-tools
+firebase login
+firebase init
+npm run build
+firebase deploy
+```
+The Realtime database can be renamed to avoid CORS issues.
+https://hhrr-103c8.firebaseio.com/ --> firebaseio.com/
+
 
 ## Running unit tests
 

@@ -1,5 +1,6 @@
 import { Component, OnInit, VERSION } from '@angular/core';
 import { formatDate } from '@angular/common';
+import { version } from '../../package.json';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,7 @@ export class AppComponent implements OnInit {
   ];
   
   private copyright: string = '© ' + formatDate(Date.now(), 'yyyy', 'en') + ' Mike Goodstadt';
-  private codebase = 'GitHub (MIT, ng' + VERSION.full + ')';
+  private codebase = 'HHRR2-app v' + version + ', GitHub (MIT, ng' + VERSION.full + ')';
   public footerMenu: any[] = [
     { title: this.copyright, link: 'https://mikegoodstadt.com' },
     { title: this.codebase, link: 'https://github.com/mikegoodstadt/hhrr2-app' },

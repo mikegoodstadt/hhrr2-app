@@ -29,7 +29,6 @@ private apiExt = environment.apiExt;
   public records(type: string): Observable<T[]> {
     type = type.toLowerCase() + 's';
     const url = `${this.apiUrl}/${type}${this.apiExt}`;
-    console.log(url);
     return this.http.get<T[]>(url).pipe(
       map(res => res.map(rec => {
         if (type === 'Employee') {
@@ -50,7 +49,6 @@ private apiExt = environment.apiExt;
   public record(type: string, record: any): Observable<T> {
     type = type.toLowerCase() + 's';
     const url = `${this.apiUrl}/${type}/${record.id}${this.apiExt}`;
-    console.log(url);
     return this.http.get<T>(url).pipe(
       map(res => {
         let date = res['startDate']
@@ -69,7 +67,6 @@ private apiExt = environment.apiExt;
   public add(type: string, record: any) {
     type = type.toLowerCase() + 's';
     const url = `${this.apiUrl}/${type}${this.apiExt}`;
-    console.log(url);
     return this.http.post(url, JSON.stringify(record), httpOptions).pipe(
       // retry(1),
       catchError(this.handleError<any[]>(type, 'add'))
@@ -84,7 +81,6 @@ private apiExt = environment.apiExt;
   public update(type: string, record: any) {
     type = type.toLowerCase() + 's';
     const url = `${this.apiUrl}/${type}/${record.id}${this.apiExt}`;
-    console.log(url);
     return this.http.put(url, JSON.stringify(record), httpOptions).pipe(
       // retry(1),
       catchError(this.handleError<any[]>(type, 'update'))
@@ -99,7 +95,6 @@ private apiExt = environment.apiExt;
   public delete(type: string, record: any) {
     type = type.toLowerCase() + 's';
     const url = `${this.apiUrl}/${type}/${record.id}${this.apiExt}`;
-    console.log(url);
     return this.http.delete(url, httpOptions).pipe(
       // retry(1),
       catchError(this.handleError<any[]>(type, 'delete'))

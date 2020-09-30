@@ -4,6 +4,9 @@ import { Record } from './record.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+/**
+ * Generic CRUD Serivce
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -121,7 +124,7 @@ export abstract class RecordsService<T extends Record> {
    * @param record Record to be added.
    */
   public delete(record: T): void {
-    this.dataService.delete(this.recordType, record.id).subscribe();
+    this.dataService.delete(this.recordType, record).subscribe();
   }
 
 }
