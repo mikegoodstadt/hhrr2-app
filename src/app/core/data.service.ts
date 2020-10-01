@@ -133,6 +133,8 @@ private apiExt: string;
   }
   
   private getType(type: string): string {
+    // Model name is single but collection is plural
+    // e.g. 'record' vs 'records'
     return type + 's';
   }
 
