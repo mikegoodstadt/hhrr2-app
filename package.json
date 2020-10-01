@@ -3,10 +3,12 @@
   "version": "1.1.0",
   "scripts": {
     "ng": "ng",
+    "start-dev": "ng serve --configuration=dev",
     "start": "ng serve",
     "dev-api": "json-server -c api/config.json api/db.json",
     "dev": "run-p dev-api start",
-    "build": "env NG_BUILD_MANGLE=false ng build --prod",
+    "build-dev": "env NG_BUILD_MANGLE=false ng build --configuration=dev",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

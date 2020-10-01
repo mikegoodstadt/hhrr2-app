@@ -71,7 +71,7 @@ export abstract class RecordsService<T extends Record> {
    * @param ref  Record id / name, default of "1".
    * @returns Observable sinle Record
    */
-  public getRecord(ref: number | string = 1): Observable<T> {
+  public getRecord(ref: number | string = 0): Observable<T> {
     let type = (typeof(ref) === 'string') ? 'name' : 'id';
     return this.records.pipe( map(recs => recs.find(rec => (rec[type] === ref)) ));
   }

@@ -76,7 +76,7 @@ export class TableComponent implements OnInit {
     /** Filter for Dates greater/equal to picked Date */
     this.dataSource = this.records.pipe(
       map(arr => arr.filter(rec => {
-        console.log(rec);
+        // console.log(rec);
         return rec['startDate'].getTime() >= checkDate;
       }))
     );

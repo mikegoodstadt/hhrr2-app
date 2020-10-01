@@ -15,12 +15,15 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class DataService<T extends Record> {
-private apiUrl = environment.apiUrl;
-private apiExt = environment.apiExt;
+private apiUrl: string;
+private apiExt: string;
 
   constructor(
     private http: HttpClient,
-  ) { }
+  ) {
+    this.apiUrl = environment.apiUrl;
+    this.apiExt = (environment.apiExt) ? '.' + environment.apiExt : '';
+  }
 
   /**
    * Fetch distinct record collections from data source.
@@ -62,17 +65,25 @@ private apiExt = environment.apiExt;
   }
 
   /**
-   * POST new record to data source.
+   * POST/PATCH new record to data source.
    * @param type Record type
    * @param record complete Record
    */
   public add(type: string, record: any) {
     type = this.getType(type);
-    const url = `${this.apiUrl}/${type}${this.apiExt}`;
-    return this.http.post(url, JSON.stringify(record), httpOptions).pipe(
-      // retry(1),
-      catchError(this.handleError<any[]>(type, 'add'))
-    );
+    if (this.apiExt) { // Firebase (workaround for POST generating random Key)
+      const url = `${this.apiUrl}/${type}/${record.id}${this.apiExt}`;
+      return this.http.patch(url, JSON.stringify(record), httpOptions).pipe(
+        // retry(1),
+        catchError(this.handleError<any[]>(type, 'add'))
+      );
+    } else { // json-server or other SQL
+      const url = `${this.apiUrl}/${type}${this.apiExt}`;
+      return this.http.post(url, JSON.stringify(record), httpOptions).pipe(
+        // retry(1),
+        catchError(this.handleError<any[]>(type, 'add'))
+      );
+    }
   }
 
   /**

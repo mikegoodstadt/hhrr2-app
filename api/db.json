@@ -1,7 +1,7 @@
 {
   "settings": [
     {
-      "id": 1,
+      "id": 0,
       "name": "Profile Settings",
       "ageMin": 16,
       "ageMax": 65
@@ -27,7 +27,7 @@
   ],
   "employees": [
     {
-      "id": 10001,
+      "id": 0,
       "name": "Alexa",
       "lastname": "Manages",
       "age": 42,
@@ -35,7 +35,7 @@
       "department": 1
     },
     {
-      "id": 10002,
+      "id": 1,
       "name": "Victor",
       "lastname": "Devlead",
       "age": 64,
@@ -43,18 +43,18 @@
       "department": 2
     },
     {
-      "id": 10003,
+      "id": 2,
       "name": "Mike",
       "lastname": "Frontend",
       "age": 33,
-      "startDate": "2019-01-01T09:00:00.000Z",
+      "startDate": "2020-09-30T22:00:00.000Z",
       "department": 2
     },
     {
-      "id": 10004,
+      "id": 3,
       "name": "Billie",
       "lastname": "Chatbot",
-      "age": 20,
+      "age": 24,
       "startDate": "2020-09-01",
       "department": 3
     }

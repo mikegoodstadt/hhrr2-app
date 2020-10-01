@@ -1,0 +1,53 @@
+{
+  "departments" : {
+    "10000" : {
+      "name" : "Default"
+    },
+    "10001" : {
+      "name" : "HR"
+    },
+    "10002" : {
+      "name" : "IT"
+    },
+    "10003" : {
+      "name" : "Sales"
+    }
+  },
+  "employees" : {
+    "10001" : {
+      "age" : 42,
+      "department" : 1,
+      "lastname" : "Manages",
+      "name" : "Alexa",
+      "startDate" : "1989-11-09T09:00:00.000Z"
+    },
+    "10002" : {
+      "age" : 64,
+      "department" : 2,
+      "lastname" : "Devlead",
+      "name" : "Victor",
+      "startDate" : "2014-06-09T09:00:00.000Z"
+    },
+    "10003" : {
+      "age" : 33,
+      "department" : 2,
+      "lastname" : "Frontend",
+      "name" : "Mike",
+      "startDate" : "2019-01-01T09:00:00.000Z"
+    },
+    "10004" : {
+      "age" : 20,
+      "department" : 3,
+      "lastname" : "Chatbot",
+      "name" : "Billie",
+      "startDate" : "2020-09-01"
+    }
+  },
+  "settings" : {
+    "10000" : {
+      "ageMax" : 65,
+      "ageMin" : 16,
+      "name" : "Profile Settings"
+    }
+  }
+}

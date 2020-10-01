@@ -67,7 +67,35 @@
                   "maximumError": "10kb"
                 }
               ]
-            }
+            },
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }        
           }
         },
         "serve": {
@@ -79,6 +107,9 @@
           "configurations": {
             "production": {
               "browserTarget": "hhrr2-app:build:production"
+            },
+            "dev": {
+              "browserTarget": "hhrr2-app:build:dev"
             }
           }
         },
@@ -128,6 +159,9 @@
           "configurations": {
             "production": {
               "devServerTarget": "hhrr2-app:serve:production"
+            },
+            "dev": {
+              "devServerTarget": "hhrr2-app:serve:dev"
             }
           }
         }
